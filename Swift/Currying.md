@@ -13,31 +13,29 @@ Ex)
 
 기존 방법 :
 
+```swift
 func add(_ value1: Int, _ value2: Int) -> Int {
 
-​	return value1 + value2
+	return value1 + value2
 
 }
 
 add(2,3)
+```
 
-
-
+```swift
 func currideAdd(_ value: Int) -> ( (Int) -> Int ) {
 
-​	return { value2 in
-
-​		return value1 + value2
-
-​	}
-
+	return { value2 in
+		return value1 + value2
+	}
 }
-
 let add2 = curriedAdd(2)
 
 add2(3)
 
 curriedAdd(2)(3)
+```
 
 
 
@@ -55,23 +53,27 @@ Ex2)
 
 커링 방법
 
+```swift
 func stringDevider(_ seperater: String) -> (String) -> [String] {
 
-​	return { (string: String) -> [String] in
+	return { (string: String) -> [String] in
 
-​		return string.components(separatedBy: separator)
+		return string.components(separatedBy: separator)
 
-​	}
+	}
 
 }
 
-`let stringDevideBySlash = stringDevider("/")`
+let stringDevideBySlash = stringDevider("/")
 
-`let stringDevideByAsterisk = stringDevider("*")`
+let stringDevideByAsterisk = stringDevider("*")
 
-`stringDevideBySlash("aaa/bbb/ccc/ddd")`
+stringDevideBySlash("aaa/bbb/ccc/ddd")`
 
-`stringDevideByAsterisk("aaa*bbb*ccc*ddd")`
+stringDevideByAsterisk("aaa*bbb*ccc*ddd")
+```
+
+
 
 
 
@@ -79,12 +81,12 @@ func stringDevider(_ seperater: String) -> (String) -> [String] {
 
 # 클래스 인스턴스가 함수를 콜하는 방법
 
+```swift
 class SomeClass {
 
-​	func someFuction() {
+	func someFuction() {
 
-​	}
-
+	}
 }
 
 let someInstance = SomeClass()
@@ -94,6 +96,9 @@ someInstance.someFunction()
 
 
 SomeClass.someFunction(someInstance)()
+```
+
+
 
 클래스 객체를 인자로 받아 함수를 리턴해줌.(?)
 
@@ -103,27 +108,28 @@ SomeClass.someFunction(someInstance)()
 
 #  
 
+```swift
 func regexTest(pattern: String) -> (String) -> Bool {
 
-​	let expression: NSRegularExpression? = try? NSRegularExpression(pattern: pattern, 
+	let expression: NSRegularExpression? = try? NSRegularExpression(pattern: pattern, 
 
-​					options: .caseInsensitive)
+					options: .caseInsensitive)
 
-return { (input: String) -> Bool in
+	return { (input: String) -> Bool in
 
-​	guard let expression = expression else { return false }
+	guard let expression = expression else { return false }
 
-​	let inputRange = NSMakeRange(0, input.characters.count)
+	let inputRange = NSMakeRange(0, input.characters.count)
 
-​	let matches = expression.matches(in: input,
+	let matches = expression.matches(in: input,
 
-​									options: [],
+									options: [],
 
-​									range: inputRange)
+									range: inputRange)
 
-​	return matches.count > 0
+	return matches.count > 0
 
-​	}
+	}
 
 }
 
@@ -134,39 +140,39 @@ regesTest(pattern: "main")("int main()")
 let hasMainIn = regexTest(pattern: "main")
 
 hasMainIn("int main()")
+```
+
+
 
 
 
 ** 클래스 방법**
 
+```swift
 class Regex {
 
-​	var internalExpression: NSRegularExpression?
+	var internalExpression: NSRegularExpression?
 
+	init(_ pattern: String) {
 
+		self.internalExpression = 
 
-​	init(_ pattern: String) {
+			try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
 
-​		self.internalExpression = 
+	}
 
-​			try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+	func test(_ input: String) -> Bool {
 
-​	}
+		let inputRange = NSMakeRange(0, input.characters.count)
 
-​	func test(_ input: String) -> Bool {
+		guard let matchesCount = self.internalExpression?
 
-​		let inputRange = NSMakeRange(0, input.characters.count)
+			.matches(in: input, options: [], range: inputRange)
 
-​		guard let matchesCount = self.internalExpression?
+			.count else { return false }
 
-​			.matches(in: input, options: [], range: inputRange)
-
-​			.count else { return false }
-
-​		return matchesCount > 0
-
-​	}
-
+		return matchesCount > 0
+	}
 }
 
 let regex = Regex("main")
@@ -174,6 +180,9 @@ let regex = Regex("main")
 regex.test("int main()")
 
 Regex("main").test("int main()")
+```
+
+
 
 
 
@@ -348,7 +357,7 @@ viewController.api = { (pageID: Int) -> Observable<[Post]> in
 
 }
 
-Search API 추가
+**Search API 추가**
 
 func searchAPI(searchText: String) -> (Int) -> Observable<[Post]>
 
