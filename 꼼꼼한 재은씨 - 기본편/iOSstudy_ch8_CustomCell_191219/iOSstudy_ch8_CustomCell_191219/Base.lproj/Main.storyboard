@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t8L-AU-r1A">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t8L-AU-r1A">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,27 +16,71 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="zHe-pg-B0w">
-                            <rect key="frame" x="0.0" y="108" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="136" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ListCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" id="bP4-kp-ZOF">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ListCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ListCell" id="bP4-kp-ZOF" customClass="MovieCell" customModule="iOSstudy_ch8_CustomCell_191219" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bP4-kp-ZOF" id="fCG-hT-exh">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKE-8j-Hs2">
-                                            <rect key="frame" x="16" y="15" width="240" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영화 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKE-8j-Hs2">
+                                            <rect key="frame" x="81" y="15" width="240" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영화에 대한 내용 설명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdl-Vz-jXZ">
+                                            <rect key="frame" x="81" y="44" width="104" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평점" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q72-Ya-fS3">
+                                            <rect key="frame" x="340" y="44" width="21" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개봉일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9u-mJ-1QJ">
+                                            <rect key="frame" x="329" y="18" width="32" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e23-Yy-SZw">
+                                            <rect key="frame" x="10" y="6" width="55" height="68"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="68" id="ATH-PH-CjH"/>
+                                                <constraint firstAttribute="width" constant="55" id="d7G-xc-BPM"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="W9u-mJ-1QJ" firstAttribute="trailing" secondItem="q72-Ya-fS3" secondAttribute="trailing" id="0Il-VW-s4y"/>
+                                        <constraint firstItem="gKE-8j-Hs2" firstAttribute="leading" secondItem="e23-Yy-SZw" secondAttribute="trailing" constant="16" id="0KK-RV-Uj4"/>
+                                        <constraint firstItem="q72-Ya-fS3" firstAttribute="top" secondItem="W9u-mJ-1QJ" secondAttribute="bottom" constant="11" id="1AW-eJ-yCs"/>
+                                        <constraint firstItem="e23-Yy-SZw" firstAttribute="centerY" secondItem="fCG-hT-exh" secondAttribute="centerY" id="CXQ-Py-ZGv"/>
+                                        <constraint firstItem="e23-Yy-SZw" firstAttribute="leading" secondItem="fCG-hT-exh" secondAttribute="leading" constant="10" id="ORr-UW-bDg"/>
+                                        <constraint firstItem="q72-Ya-fS3" firstAttribute="centerY" secondItem="rdl-Vz-jXZ" secondAttribute="centerY" id="USi-R6-Y4E"/>
+                                        <constraint firstItem="rdl-Vz-jXZ" firstAttribute="leading" secondItem="gKE-8j-Hs2" secondAttribute="leading" id="aTr-vI-wYQ"/>
+                                        <constraint firstItem="gKE-8j-Hs2" firstAttribute="top" secondItem="fCG-hT-exh" secondAttribute="top" constant="15" id="dg9-VR-4lc"/>
+                                        <constraint firstAttribute="trailing" secondItem="W9u-mJ-1QJ" secondAttribute="trailing" constant="22" id="fI1-ea-l1R"/>
+                                        <constraint firstItem="rdl-Vz-jXZ" firstAttribute="width" secondItem="gKE-8j-Hs2" secondAttribute="width" multiplier="0.433333" id="oNY-4w-0cF"/>
+                                        <constraint firstItem="W9u-mJ-1QJ" firstAttribute="top" secondItem="fCG-hT-exh" secondAttribute="top" constant="18" id="yrd-o6-SDD"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descLabel" destination="rdl-Vz-jXZ" id="be7-kl-xbI"/>
+                                    <outlet property="opendateLabel" destination="W9u-mJ-1QJ" id="BRn-Mq-Up5"/>
+                                    <outlet property="ratingLabel" destination="q72-Ya-fS3" id="Kup-mg-roB"/>
+                                    <outlet property="thumbnailImageView" destination="e23-Yy-SZw" id="eoK-Zq-RY8"/>
+                                    <outlet property="titleLabel" destination="gKE-8j-Hs2" id="D63-Z3-hcV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
