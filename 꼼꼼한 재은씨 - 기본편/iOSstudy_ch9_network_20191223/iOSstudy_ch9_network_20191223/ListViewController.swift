@@ -22,6 +22,7 @@ class ListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("ddd")
         self.callMovieAPI()
     }
 
@@ -48,8 +49,8 @@ class ListViewController: UITableViewController {
                 .jsonObject(with: apidata,
                             options: []) as! NSDictionary
             let hoppin = apiDictionary["hoppin"] as! NSDictionary
-            let movies = apiDictionary["movies"] as! NSDictionary
-            let movie = apiDictionary["movie"] as! NSArray
+            let movies = hoppin["movies"] as! NSDictionary
+            let movie = movies["movie"] as! NSArray
 
             // Iterator 처리를 하면서 API 데이터를 MovieVO 객체에 저장한다.
             for row in movie {
@@ -130,7 +131,7 @@ class ListViewController: UITableViewController {
         cell.opendateLabel.text = row.opendate
         cell.ratingLabel.text = "\(row.rating!)"
 
-        // 비동기 방식으로 섬네일 이미지를 읽어옴옴
+        // 비동기 방식으로 섬네일 이미지를 읽어옴
         DispatchQueue.main.async(execute: {
             NSLog("비동기 방식으로 실행되는 부분입니다")
             cell.thumbnailImageView.image = self.getThumbnailImage(indexPath.row)
@@ -148,3 +149,4 @@ class ListViewController: UITableViewController {
     }
 
 }
+
