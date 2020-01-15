@@ -16,5 +16,7 @@ let day = ["화", "수", "목", "금", "토", "일", "월"]
 func whatDayOfTheWeekInJanuary(_ date: Int) -> String {
     return "\(day[date % 7])요일"
 }
+
+print(whatDayOfTheWeekInJanuary(15)) // 수요일
 ```
 
