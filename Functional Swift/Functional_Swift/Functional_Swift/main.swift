@@ -8,71 +8,632 @@
 
 import Foundation
 
-typealias Distance = Double
+//typealias Distance = Double
+//
+//struct Position {
+//    var x: Double
+//    var y: Double
+//}
+//
+//struct Ship {
+//    var position: Position
+//    var firingRange: Distance
+//    var unsafeRange: Distance
+//}
+//
+//extension Position {
+//    /// 회색 영역에 점이 있는지 확인
+//    func inRange(range: Distance) -> Bool {
+//        return sqrt(x * x + y * y) <= range
+//    }
+//}
+//
+//extension Ship {
+//    /// 다른 함선이 포격 범위에 드는지 확인
+//    func canEngageShip(target: Ship) -> Bool {
+//        let dx = target.position.x - position.x
+//        let dy = target.position.y - position.y
+//        let targetDistance = sqrt(dx * dx + dy * dy)
+//        return targetDistance <= firingRange
+//    }
+//
+//    func canSafelyEngageShip(target: Ship) -> Bool {
+//        let dx = target.position.x - position.x
+//        let dy = target.position.y - position.y
+//        let targetDistance = sqrt(dx * dx + dy * dy)
+//        return targetDistance <= firingRange && targetDistance > unsafeRange
+//    }
+//}
+//
+//func f1(_ i: Int) -> Int {
+//    return i * 2
+//}
+//
+//func f2(_ i: Int) -> String {
+//    return "\(i)"
+//}
+//
+//let result = f2(f1(100))
+//print(result)
+//
+//func ff(_ pf1: @escaping (Int) -> Int,
+//        _ pf2: @escaping (Int) -> String) -> (Int) -> String {
+//    return { i in
+//        return pf2(pf1(i))
+//    }
+//}
+//
+//let f3 = ff(f1, f2)
+//let result2 = f3(100)
+//print(result2)
+//
+//func comp<A, B, C>(_ pf1: @escaping (A) -> B,
+//                   _ pf2: @escaping (B) -> C) -> (A) -> C {
+//    return { i in
+//        return pf2(pf1(i))
+//    }
+//}
+//
+//let f4 = comp(f1, f2)
+//
+//func filterEven(_ ns: [Int]) -> [Int] {
+//    return ns.filter { $0 % 2 == 0 }
+//}
+//
+//func sum(_ ns: [Int]) -> Int {
+//    return ns.reduce(0, +)
+//}
+//
+//let filteredSum = comp(filterEven, sum)
+//
+//func solution(_ nums: [Int]) -> Int {
+//    return filteredSum(nums)
+//}
+//
+//func filterSum(_ ns: [Int], _ n: Int) -> Int {
+//    return ns.filter({ $0 % n == 0 }).reduce(0, +)
+//}
+//
+//func filterSum2(_ n: Int) -> ([Int]) -> Int {
+//    return { i in
+//        return
+//    }
+//}
+//
+//func solution(_ nums: [Int], _ r: Int) -> Int {
+//    let filteredR = filterSum2(r)
+//    return filteredR(nums)
+//}
+//
+//class SomeClass {
+//    func someFunction() {
+//    }
+//}
+//let someInstance = SomeClass()
+//someInstance.someFunction()
+//SomeClass.someFunction(someInstance)()
+//
+//// 커링 방법
+//func regexTest(pattern: String) -> (String) -> Bool {
+//    let expression: NSRegularExpression? = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+//    return { (input: String) -> Bool in
+//        guard let expression = expression else { return false }
+//        let inputRange = NSMakeRange(0, input.count)
+//        let matches = expression.matches(in: input,
+//                                         options: [],
+//                                         range: inputRange)
+//        return matches.count > 0
+//    }
+//}
+//
+//regexTest(pattern: "main")("int main()") // true
+//
+//let hasMainIn = regexTest(pattern: "main")
+//hasMainIn("int main()")
+//
+//// 클래스 방법
+//class Regex {
+//    var internalExpression: NSRegularExpression?
+//
+//    init(_ pattern: String) {
+//        self.internalExpression = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+//    }
+//
+//    func test(_ input: String) -> Bool {
+//        let inputRange = NSMakeRange(0, input.count)
+//        guard let matchesCount = self.internalExpression?
+//            .matches(in: input, options: [], range: inputRange)
+//            .count else { return false }
+//        return matchesCount > 0
+//    }
+//}
+//
+//let regex = Regex("main")
+//regex.test("int main()")
+//
+//Regex("main").test("int main()")
+//
+//let hasMainIn2 = Regex("main").test
+//hasMainIn2("int main()")
+//
+//
+//// 액션시트로 친구 초대
+//struct Friend {
+//    var name: String
+//    var id: Int
+//}
+//
+//let friends = [Friend(name: "키윈도", id: 1),
+//Friend(name: "키윈도", id: 1),
+//Friend(name: "키윈도", id: 1),
+//Friend(name: "키윈도", id: 1),
+//Friend(name: "키윈도", id: 1)]
+//
+//var array = [1,2,3,4]
+//array.compactMap(<#T##transform: (Int) throws -> ElementOfResult?##(Int) throws -> ElementOfResult?#>)
+//
+//
+//import Foundation
+//
+////
+////  Curry.swift
+////  Swiftz
+////
+////  Created by Maxwell Swadling on 7/06/2014.
+////  Copyright (c) 2014-2016 Maxwell Swadling. All rights reserved.
+////
+///// Converts an uncurried function to a curried function.
+/////
+///// A curried function is a function that always returns another function or a
+///// value when applied as opposed to an uncurried function which may take tuples.
+//
+//public func curry<A, B, C>(_ f : @escaping (A, B) -> C) -> (A) -> (B) -> C {
+//
+//    return { (a : A) -> (B) -> C in
+//        { (b : B) -> C in
+//
+//            f(a, b)
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D>(_ f : @escaping (A, B, C) -> D) -> (A) -> (B) -> (C) -> D {
+//
+//    return { (a : A) -> (B) -> (C) -> D in
+//        { (b : B) -> (C) -> D in
+//            { (c : C) -> D in
+//
+//                f(a, b, c)
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E>(_ f : @escaping (A, B, C, D) -> E) -> (A) -> (B) -> (C) -> (D) -> E {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> E in
+//        { (b : B) -> (C) -> (D) -> E in
+//            { (c : C) -> (D) -> E in
+//                { (d : D) -> E in
+//
+//                    f(a, b, c, d)
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F>(_ f : @escaping (A, B, C, D, E) -> F) -> (A) -> (B) -> (C) -> (D) -> (E) -> F {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> F in
+//        { (b : B) -> (C) -> (D) -> (E) -> F in
+//            { (c : C) -> (D) -> (E) -> F in
+//                { (d : D) -> (E) -> F in
+//                    { (e : E) -> F in
+//
+//                        f(a, b, c, d, e)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G>(_ f : @escaping (A, B, C, D, E, F) -> G) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> G {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> G in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> G in
+//            { (c : C) -> (D) -> (E) -> (F) -> G in
+//                { (d : D) -> (E) -> (F) -> G in
+//                    { (e : E) -> (F) -> G in
+//                        { (ff : F) -> G in
+//
+//                            f(a, b, c, d, e, ff)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G, H>(_ f : @escaping (A, B, C, D, E, F, G) -> H) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> H {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> H in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> (G) -> H in
+//            { (c : C) -> (D) -> (E) -> (F) -> (G) -> H in
+//                { (d : D) -> (E) -> (F) -> (G) -> H in
+//                    { (e : E) -> (F) -> (G) -> H in
+//                        { (ff : F) -> (G) -> H in
+//                            { (g : G) -> H in
+//
+//                                f(a, b, c, d, e, ff, g)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G, H, I>(_ f : @escaping (A, B, C, D, E, F, G, H) -> I) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> I {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> I in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> I in
+//            { (c : C) -> (D) -> (E) -> (F) -> (G) -> (H) -> I in
+//                { (d : D) -> (E) -> (F) -> (G) -> (H) -> I in
+//                    { (e : E) -> (F) -> (G) -> (H) -> I in
+//                        { (ff : F) -> (G) -> (H) -> I in
+//                            { (g : G) -> (H) -> I in
+//                                { (h : H) -> I in
+//
+//                                    f(a, b, c, d, e, ff, g, h)
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G, H, I, J>(_ f : @escaping (A, B, C, D, E, F, G, H, I) -> J) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> J {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> J in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> J in
+//            { (c : C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> J in
+//                { (d : D) -> (E) -> (F) -> (G) -> (H) -> (I) -> J in
+//                    { (e : E) -> (F) -> (G) -> (H) -> (I) -> J in
+//                        { (ff : F) -> (G) -> (H) -> (I) -> J in
+//                            { (g : G) -> (H) -> (I) -> J in
+//                                { (h : H) -> (I) -> J in
+//                                    { (i : I) -> J in
+//
+//                                        f(a, b, c, d, e, ff, g, h, i)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G, H, I, J, K>(_ f : @escaping (A, B, C, D, E, F, G, H, I, J) -> K) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> K {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> K in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> K in
+//            { (c : C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> K in
+//                { (d : D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> K in
+//                    { (e : E) -> (F) -> (G) -> (H) -> (I) -> (J) -> K in
+//                        { (ff : F) -> (G) -> (H) -> (I) -> (J) -> K in
+//                            { (g : G) -> (H) -> (I) -> (J) -> K in
+//                                { (h : H) -> (I) -> (J) -> K in
+//                                    { (i : I) -> (J) -> K in
+//                                        { (j : J) -> K in
+//
+//                                            f(a, b, c, d, e, ff, g, h, i, j)
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G, H, I, J, K, L>(_ f : @escaping (A, B, C, D, E, F, G, H, I, J, K) -> L) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> L {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> L in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> L in
+//            { (c : C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> L in
+//                { (d : D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> L in
+//                    { (e : E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> L in
+//                        { (ff : F) -> (G) -> (H) -> (I) -> (J) -> (K) -> L in
+//                            { (g : G) -> (H) -> (I) -> (J) -> (K) -> L in
+//                                { (h : H) -> (I) -> (J) -> (K) -> L in
+//                                    { (i : I) -> (J) -> (K) -> L in
+//                                        { (j : J) -> (K) -> L in
+//                                            { (k : K) -> L in
+//
+//                                                f(a, b, c, d, e, ff, g, h, i, j, k)
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G, H, I, J, K, L, M>(_ f : @escaping (A, B, C, D, E, F, G, H, I, J, K, L) -> M) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> M {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> M in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> M in
+//            { (c : C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> M in
+//                { (d : D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> M in
+//                    { (e : E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> M in
+//                        { (ff : F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> M in
+//                            { (g : G) -> (H) -> (I) -> (J) -> (K) -> (L) -> M in
+//                                { (h : H) -> (I) -> (J) -> (K) -> (L) -> M in
+//                                    { (i : I) -> (J) -> (K) -> (L) -> M in
+//                                        { (j : J) -> (K) -> (L) -> M in
+//                                            { (k : K) -> (L) -> M in
+//                                                { (l : L) -> M in
+//
+//                                                    f(a, b, c, d, e, ff, g, h, i, j, k, l)
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G, H, I, J, K, L, M, N>(_ f : @escaping (A, B, C, D, E, F, G, H, I, J, K, L, M) -> N) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N in
+//            { (c : C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N in
+//                { (d : D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N in
+//                    { (e : E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N in
+//                        { (ff : F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N in
+//                            { (g : G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N in
+//                                { (h : H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N in
+//                                    { (i : I) -> (J) -> (K) -> (L) -> (M) -> N in
+//                                        { (j : J) -> (K) -> (L) -> (M) -> N in
+//                                            { (k : K) -> (L) -> (M) -> N in
+//                                                { (l : L) -> (M) -> N in
+//                                                    { (m : M) -> N in
+//
+//                                                        f(a, b, c, d, e, ff, g, h, i, j, k, l, m)
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O>(_ f : @escaping (A, B, C, D, E, F, G, H, I, J, K, L, M, N) -> O) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O in
+//            { (c : C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O in
+//                { (d : D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O in
+//                    { (e : E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O in
+//                        { (ff : F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O in
+//                            { (g : G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O in
+//                                { (h : H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O in
+//                                    { (i : I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O in
+//                                        { (j : J) -> (K) -> (L) -> (M) -> (N) -> O in
+//                                            { (k : K) -> (L) -> (M) -> (N) -> O in
+//                                                { (l : L) -> (M) -> (N) -> O in
+//                                                    { (m : M) -> (N) -> O in
+//                                                        { (n : N) -> O in
+//
+//                                                            f(a, b, c, d, e, ff, g, h, i, j, k, l, m, n)
+//                                                        }
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//
+//
+//public func curry<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P>(_ f : @escaping (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O) -> P) -> (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P {
+//
+//    return { (a : A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//        { (b : B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//            { (c : C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//                { (d : D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//                    { (e : E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//                        { (ff : F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//                            { (g : G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//                                { (h : H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//                                    { (i : I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//                                        { (j : J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P in
+//                                            { (k : K) -> (L) -> (M) -> (N) -> (O) -> P in
+//                                                { (l : L) -> (M) -> (N) -> (O) -> P in
+//                                                    { (m : M) -> (N) -> (O) -> P in
+//                                                        { (n : N) -> (O) -> P in
+//                                                            { (o : O) -> P in
+//
+//                                                                f(a, b, c, d, e, ff, g, h, i, j, k, l, m, n, o)
+//                                                            }
+//                                                        }
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//}
+//
+///// Converts a curried function to an uncurried function.
+/////
+///// An uncurried function may take tuples as opposed to a curried function which must take a single
+///// value and return a single value or function.
+//public func uncurry<A, B, C>(_ f : @escaping (A) -> (B) -> C) -> (A, B) -> C {
+//    return { a, b in f(a)(b) }
+//}
+//
+//public func uncurry<A, B, C, D>(_ f : @escaping (A) -> (B) -> (C) -> D) -> (A, B, C) -> D {
+//    return { a, b, c in f(a)(b)(c) }
+//}
+//
+//public func uncurry<A, B, C, D, E>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> E) -> (A, B, C, D) -> E {
+//    return { a, b, c, d in f(a)(b)(c)(d) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> F) -> (A, B, C, D, E) -> F {
+//    return { a, b, c, d, e in f(a)(b)(c)(d)(e) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> G) -> (A, B, C, D, E, F) -> G {
+//    return { a, b, c, d, e, ff in f(a)(b)(c)(d)(e)(ff) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G, H>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> H) -> (A, B, C, D, E, F, G) -> H {
+//    return { a, b, c, d, e, ff, g in f(a)(b)(c)(d)(e)(ff)(g) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G, H, I>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> I) -> (A, B, C, D, E, F, G, H) -> I {
+//    return { a, b, c, d, e, ff, g, h in f(a)(b)(c)(d)(e)(ff)(g)(h) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G, H, I, J>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> J) -> (A, B, C, D, E, F, G, H, I) -> J {
+//    return { a, b, c, d, e, ff, g, h, i in f(a)(b)(c)(d)(e)(ff)(g)(h)(i) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G, H, I, J, K>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> K) -> (A, B, C, D, E, F, G, H, I, J) -> K {
+//    return { a, b, c, d, e, ff, g, h, i, j in f(a)(b)(c)(d)(e)(ff)(g)(h)(i)(j) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G, H, I, J, K, L>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> L) -> (A, B, C, D, E, F, G, H, I, J, K) -> L {
+//    return { a, b, c, d, e, ff, g, h, i, j, k in f(a)(b)(c)(d)(e)(ff)(g)(h)(i)(j)(k) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G, H, I, J, K, L, M>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> M) -> (A, B, C, D, E, F, G, H, I, J, K, L) -> M {
+//    return { a, b, c, d, e, ff, g, h, i, j, k, l in f(a)(b)(c)(d)(e)(ff)(g)(h)(i)(j)(k)(l) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G, H, I, J, K, L, M, N>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> N) -> (A, B, C, D, E, F, G, H, I, J, K, L, M) -> N {
+//    return { a, b, c, d, e, ff, g, h, i, j, k, l, m in f(a)(b)(c)(d)(e)(ff)(g)(h)(i)(j)(k)(l)(m) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> O) -> (A, B, C, D, E, F, G, H, I, J, K, L, M, N) -> O {
+//    return { a, b, c, d, e, ff, g, h, i, j, k, l, m, n in f(a)(b)(c)(d)(e)(ff)(g)(h)(i)(j)(k)(l)(m)(n) }
+//}
+//
+//public func uncurry<A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P>(_ f : @escaping (A) -> (B) -> (C) -> (D) -> (E) -> (F) -> (G) -> (H) -> (I) -> (J) -> (K) -> (L) -> (M) -> (N) -> (O) -> P) -> (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O) -> P {
+//    return { a, b, c, d, e, ff, g, h, i, j, k, l, m, n, o in f(a)(b)(c)(d)(e)(ff)(g)(h)(i)(j)(k)(l)(m)(n)(o) }
+//}
 
-struct Position {
-    var x: Double
-    var y: Double
-}
+let numbers = [1, 2, 3, 4]
+let mapped = numbers.map { Array(repeating: $0, count: $0) }
+// [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4]]
+let flatMapped = numbers.flatMap { Array(repeating: $0, count: $0) }
+// [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+print(mapped)
+print(flatMapped)
 
-struct Ship {
-    var position: Position
-    var firingRange: Distance
-    var unsafeRange: Distance
-}
-
-extension Position {
-    /// 회색 영역에 점이 있는지 확인
-    func inRange(range: Distance) -> Bool {
-        return sqrt(x * x + y * y) <= range
-    }
-}
-
-extension Ship {
-    /// 다른 함선이 포격 범위에 드는지 확인
-    func canEngageShip(target: Ship) -> Bool {
-        let dx = target.position.x - position.x
-        let dy = target.position.y - position.y
-        let targetDistance = sqrt(dx * dx + dy * dy)
-        return targetDistance <= firingRange
-    }
-
-    func canSafelyEngageShip(target: Ship) -> Bool {
-        let dx = target.position.x - position.x
-        let dy = target.position.y - position.y
-        let targetDistance = sqrt(dx * dx + dy * dy)
-        return targetDistance <= firingRange && targetDistance > unsafeRange
-    }
-}
-
-let day = ["화", "수", "목", "금", "토", "일", "월"]
-func whatDayOfTheWeekInJanuary(_ date: Int) -> String {
-    return "\(day[date % 7])요일"
-}
-
-print(whatDayOfTheWeekInJanuary(30))
-
-let whatDayOfTheWeekInJanuaryClosure = { (date: Int) -> String in
-    return "\(day[date % 7])요일입니다~"
-}
-
-print(whatDayOfTheWeekInJanuaryClosure(15))
-
-let today = { (month: Int, date: Int) -> String in
-  return "오늘은 \(month)월 \(date)일입니다!"
-}
-
-print(today(1, 15))
-
-let today2: (Int, Int) -> String = { "오늘은 \($0)월 \($1)일입니다!" }
-print(today2(1, 30))
-
-func whatDay(month: Int, date: Int, closure: (Int, Int) -> String) -> String {
-    return closure(month, date)
-}
-
-print(whatDay(month: 1, date: 20, closure: today))
-print(whatDay(month: 1, date: 22, closure: { mon, da in
-    return "\(mon)월 \(da)일!!"
-}))
-print(whatDay(month: 1, date: 25){ "\($0)월 \($1)일~" })
+let possibleNumbers = ["1", "2", "three", "///4///", "5"]
+let dmapped: [Int?] = possibleNumbers.map { Int($0) }
+// [1, 2, nil, nil, 5]
+let compactMapped: [Int] = possibleNumbers.compactMap { Int($0) }
+// [1, 2, 5]
+print(dmapped)
+print(compactMapped)
