@@ -1,0 +1,6 @@
+framework module Pods_CameraFilter {
+  umbrella header "Pods-CameraFilter-umbrella.h"
+
+  export *
+  module * { export * }
+}
