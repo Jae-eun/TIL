@@ -37,9 +37,8 @@ class PhotosCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell",
-                                                            for: indexPath) as? PhotoCollectionViewCell else {
-                                                                fatalError("PhotoCollectionViewCell is not found")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath) as? PhotoCollectionViewCell else {
+            fatalError("PhotoCollectionViewCell is not found")
         }
 
         let asset = self.images[indexPath.row]
@@ -57,20 +56,17 @@ class PhotosCollectionViewController: UICollectionViewController {
                                  didSelectItemAt indexPath: IndexPath) {
 
         let selectedAsset = self.images[indexPath.item]
-        PHImageManager.default().requestImage(for: selectedAsset,
-                                              targetSize: CGSize(width: 300, height: 300),
-                                              contentMode: .aspectFit,
-                                              options: nil) { [weak self] image, info in
+        PHImageManager.default().requestImage(for: selectedAsset, targetSize: CGSize(width: 300, height: 300), contentMode: .aspectFit, options: nil) { [weak self] image, info in
 
-                                                guard let info = info else { return }
-                                                let isDegradedImage = info["PHImageResultIsDegradedKey"] as! Bool
+            guard let info = info else { return }
+            let isDegradedImage = info["PHImageResultIsDegradedKey"] as! Bool
 
-                                                if !isDegradedImage {
-                                                    if let image = image {
-                                                        self?.selectedPhotoSubject.onNext(image)
-                                                        self?.dismiss(animated: true, completion: nil)
-                                                    }
-                                                }
+            if !isDegradedImage {
+                if let image = image {
+                    self?.selectedPhotoSubject.onNext(image)
+                    self?.dismiss(animated: true, completion: nil)
+                }
+            }
 
         }
     }

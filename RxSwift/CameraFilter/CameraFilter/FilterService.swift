@@ -24,12 +24,25 @@ class FilterService {
         return Observable<UIImage>.create { observer in
             self.applyFilter(to: inputImage) { filteredImage in
                 observer.onNext(filteredImage)
+                observer.onCompleted()
             }
             return Disposables.create()
         }
     }
 
-   private func applyFilter(to inputImage: UIImage, completion: @escaping ((UIImage) -> ())) {
+    // Single로 바꿔보자
+    //    func applyFilter(to inputImage: UIImage) -> Single<UIImage> {
+    //
+    //        return Single<UIImage>.create { observer -> Disposable in
+    //            self.applyFilter(to: inputImage) { filteredImage in
+    //                observer(.success(filteredImage))
+    //            }
+    //
+    //            return Disposables.create()
+    //        }
+    //    }
+
+    private func applyFilter(to inputImage: UIImage, completion: @escaping ((UIImage) -> ())) {
         let filter = CIFilter(name: "CICMYKHalftone")!
         filter.setValue(5.0, forKey: kCIInputWidthKey)
         

@@ -86,10 +86,10 @@ Observable.of(1,2,3,4,5,6,7)
 
 ```swift
 Observable.of("A", "B", "C", "D", "E", "F")
-            .skip(3)
-            .subscribe(onNext: {
-                print($0)
-            }).disposed(by: disposeBag)
+	.skip(3)
+	.subscribe(onNext: {
+		print($0)
+	}).disposed(by: disposeBag)
 
 // D
 // E
