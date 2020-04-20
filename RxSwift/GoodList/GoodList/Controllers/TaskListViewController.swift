@@ -109,7 +109,7 @@ extension TaskListViewController: UITableViewDataSource {
             .subscribe(onNext: { task in
                 //                self.tasks.value.append(task) // DEPRECATED
 
-//                let priority = Priority(rawValue: self.prioritySegmentedControl.selectedSegmentIndex - 1)
+                //                let priority = Priority(rawValue: self.prioritySegmentedControl.selectedSegmentIndex - 1)
                 var existingTasks = self.tasks.value
                 existingTasks.append(task)
                 self.tasks.accept(existingTasks)
