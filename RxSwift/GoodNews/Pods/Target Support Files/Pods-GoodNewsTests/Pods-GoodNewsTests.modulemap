@@ -1,0 +1,6 @@
+framework module Pods_GoodNewsTests {
+  umbrella header "Pods-GoodNewsTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

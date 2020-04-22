@@ -2,8 +2,8 @@
 //  SceneDelegate.swift
 //  Chapter03-Tabbar
 //
-//  Created by 이재은 on 20/04/2020.
-//  Copyright © 2020 Jaeeun. All rights reserved.
+//  Created by 이재은 on 2020/04/09.
+//  Copyright © 2020 이재은. All rights reserved.
 //
 
 import UIKit
@@ -18,6 +18,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+
+        if let tbC = self.window?.rootViewController as? UITabBarController {
+            if let tbItems = tbC.tabBar.items {
+//                tbItems[0].image = UIImage(named: "calendar")
+//                tbItems[1].image = UIImage(named: "file-tree")
+//                tbItems[2].image = UIImage(named: "photo")
+                tbItems[0].image = UIImage(named: "designbump")?.withRenderingMode(.alwaysOriginal)
+                tbItems[1].image = UIImage(named: "rss")?.withRenderingMode(.alwaysOriginal)
+                tbItems[2].image = UIImage(named: "facebook")?.withRenderingMode(.alwaysOriginal)
+
+                for tbItem in tbItems {
+                    let image = UIImage(named: "checkmark")?.withRenderingMode(.alwaysOriginal)
+                    tbItem.selectedImage = image
+                }
+                tbItems[0].title = "Calendar"
+                tbItems[1].title = "File"
+                tbItems[2].title = "Photo"
+
+//                tbC.tabBar.tintColor = .white
+//                tbC.tabBar.backgroundImage = UIImage(named: "menubar-bg-mini")?.stretchableImage(withLeftCapWidth: 5, topCapHeight: 16)
+                let image = UIImage(named: "menubar-bg-mini")!//?.stretchableImage(withLeftCapWidth: 5, topCapHeight: 16)
+//                tbC.tabBar.backgroundImage = UIImage(named: "connectivity-bar")?.stretchableImage(withLeftCapWidth: 0, topCapHeight: 0)
+//                tbC.tabBar.barTintColor = UIColor(patternImage: image)
+                tbC.tabBar.clipsToBounds = true
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -46,11 +72,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-
-        // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
 
 }
+
 
