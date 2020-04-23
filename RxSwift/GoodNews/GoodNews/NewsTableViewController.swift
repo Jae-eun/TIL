@@ -19,6 +19,14 @@ class NewsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        let navBarAppearance = UINavigationBarAppearance()
+        navigationController?.navigationBar.barTintColor = UIColor(displayP3Red: 47, green: 54, blue: 64, alpha: 1.0)
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.compactAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
 
         populateNews()
 

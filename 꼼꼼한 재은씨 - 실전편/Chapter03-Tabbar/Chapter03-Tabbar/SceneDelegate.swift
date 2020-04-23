@@ -32,16 +32,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     let image = UIImage(named: "checkmark")?.withRenderingMode(.alwaysOriginal)
                     tbItem.selectedImage = image
                 }
+
+                let tbItemProxy = UITabBarItem.appearance()
+                tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.red], for: .selected)
+                tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray], for: .disabled)
+                tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)], for: .normal)
+
                 tbItems[0].title = "Calendar"
                 tbItems[1].title = "File"
                 tbItems[2].title = "Photo"
 
 //                tbC.tabBar.tintColor = .white
 //                tbC.tabBar.backgroundImage = UIImage(named: "menubar-bg-mini")?.stretchableImage(withLeftCapWidth: 5, topCapHeight: 16)
-                let image = UIImage(named: "menubar-bg-mini")!//?.stretchableImage(withLeftCapWidth: 5, topCapHeight: 16)
+//                let image = UIImage(named: "menubar-bg-mini")!//?.stretchableImage(withLeftCapWidth: 5, topCapHeight: 16)
 //                tbC.tabBar.backgroundImage = UIImage(named: "connectivity-bar")?.stretchableImage(withLeftCapWidth: 0, topCapHeight: 0)
 //                tbC.tabBar.barTintColor = UIColor(patternImage: image)
                 tbC.tabBar.clipsToBounds = true
+
+                let tbProxy = UITabBar.appearance()
+                tbProxy.tintColor = UIColor.white
+                tbProxy.backgroundImage = UIImage(named: "menubar-bg-mini")
             }
         }
     }
