@@ -12,6 +12,12 @@ struct WeatherResult: Decodable {
     let main: Weather
 }
 
+//extension WeatherResult {
+//    static var empty: WeatherResult {
+//        return WeatherResult(main: )
+//    }
+//}
+
 struct Weather: Decodable {
     let temp: Double
     let humidity: Double
