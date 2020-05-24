@@ -1,0 +1,17 @@
+//
+//  RevealViewController.swift
+//  Chapter04-SideBarDIY
+//
+//  Created by 이재은 on 24/05/2020.
+//  Copyright © 2020 Jaeeun. All rights reserved.
+//
+
+import UIKit
+
+class RevealViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+}

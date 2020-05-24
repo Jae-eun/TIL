@@ -15,6 +15,7 @@
 		0041FAFC2467CEF40045E1CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0041FAFB2467CEF40045E1CE /* Assets.xcassets */; };
 		0041FAFF2467CEF40045E1CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0041FAFD2467CEF40045E1CE /* LaunchScreen.storyboard */; };
 		0041FB0A2467CEF50045E1CE /* Chapter03_CSButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041FB092467CEF50045E1CE /* Chapter03_CSButtonTests.swift */; };
+		0041FB152467D2E90045E1CE /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041FB142467D2E90045E1CE /* CSButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		0041FB052467CEF40045E1CE /* Chapter03-CSButtonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Chapter03-CSButtonTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0041FB092467CEF50045E1CE /* Chapter03_CSButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter03_CSButtonTests.swift; sourceTree = "<group>"; };
 		0041FB0B2467CEF50045E1CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0041FB142467D2E90045E1CE /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CSButton.swift; path = ../CSButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				0041FAEF2467CEF20045E1CE /* AppDelegate.swift */,
+				0041FB142467D2E90045E1CE /* CSButton.swift */,
 				0041FAF12467CEF20045E1CE /* SceneDelegate.swift */,
 				0041FAF32467CEF20045E1CE /* ViewController.swift */,
 				0041FAF52467CEF20045E1CE /* Main.storyboard */,
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0041FAF42467CEF20045E1CE /* ViewController.swift in Sources */,
+				0041FB152467D2E90045E1CE /* CSButton.swift in Sources */,
 				0041FAF02467CEF20045E1CE /* AppDelegate.swift in Sources */,
 				0041FAFA2467CEF20045E1CE /* Chapter03_CSButton.xcdatamodeld in Sources */,
 				0041FAF22467CEF20045E1CE /* SceneDelegate.swift in Sources */,
