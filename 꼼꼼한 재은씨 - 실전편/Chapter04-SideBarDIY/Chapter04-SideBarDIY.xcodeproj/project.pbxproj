@@ -9,21 +9,37 @@
 /* Begin PBXBuildFile section */
 		00DEB4E9247AAB0F0050CD8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DEB4E8247AAB0F0050CD8D /* AppDelegate.swift */; };
 		00DEB4EB247AAB0F0050CD8D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DEB4EA247AAB0F0050CD8D /* SceneDelegate.swift */; };
-		00DEB4ED247AAB0F0050CD8D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DEB4EC247AAB0F0050CD8D /* ViewController.swift */; };
 		00DEB4F0247AAB0F0050CD8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DEB4EE247AAB0F0050CD8D /* Main.storyboard */; };
 		00DEB4F2247AAB100050CD8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DEB4F1247AAB100050CD8D /* Assets.xcassets */; };
 		00DEB4F5247AAB100050CD8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00DEB4F3247AAB100050CD8D /* LaunchScreen.storyboard */; };
+		00DEB503247AAB290050CD8D /* sidemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DEB4FD247AAB290050CD8D /* sidemenu.png */; };
+		00DEB504247AAB290050CD8D /* icon02.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DEB4FE247AAB290050CD8D /* icon02.png */; };
+		00DEB505247AAB290050CD8D /* icon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DEB4FF247AAB290050CD8D /* icon04.png */; };
+		00DEB506247AAB290050CD8D /* icon05.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DEB500247AAB290050CD8D /* icon05.png */; };
+		00DEB507247AAB290050CD8D /* icon01.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DEB501247AAB290050CD8D /* icon01.png */; };
+		00DEB508247AAB290050CD8D /* icon03.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DEB502247AAB290050CD8D /* icon03.png */; };
+		00DEB50A247AAB410050CD8D /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DEB509247AAB410050CD8D /* RevealViewController.swift */; };
+		00DEB50C247AAB4E0050CD8D /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DEB50B247AAB4E0050CD8D /* FrontViewController.swift */; };
+		00DEB510247ACF380050CD8D /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DEB50F247ACF380050CD8D /* SideBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00DEB4E5247AAB0F0050CD8D /* Chapter04-SideBarDIY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chapter04-SideBarDIY.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DEB4E8247AAB0F0050CD8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00DEB4EA247AAB0F0050CD8D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		00DEB4EC247AAB0F0050CD8D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		00DEB4EF247AAB0F0050CD8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00DEB4F1247AAB100050CD8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00DEB4F4247AAB100050CD8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00DEB4F6247AAB100050CD8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00DEB4FD247AAB290050CD8D /* sidemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sidemenu.png; sourceTree = "<group>"; };
+		00DEB4FE247AAB290050CD8D /* icon02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon02.png; sourceTree = "<group>"; };
+		00DEB4FF247AAB290050CD8D /* icon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon04.png; sourceTree = "<group>"; };
+		00DEB500247AAB290050CD8D /* icon05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon05.png; sourceTree = "<group>"; };
+		00DEB501247AAB290050CD8D /* icon01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon01.png; sourceTree = "<group>"; };
+		00DEB502247AAB290050CD8D /* icon03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon03.png; sourceTree = "<group>"; };
+		00DEB509247AAB410050CD8D /* RevealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RevealViewController.swift; path = Resources/RevealViewController.swift; sourceTree = "<group>"; };
+		00DEB50B247AAB4E0050CD8D /* FrontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FrontViewController.swift; path = ../FrontViewController.swift; sourceTree = "<group>"; };
+		00DEB50F247ACF380050CD8D /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +72,31 @@
 		00DEB4E7247AAB0F0050CD8D /* Chapter04-SideBarDIY */ = {
 			isa = PBXGroup;
 			children = (
+				00DEB4FC247AAB1D0050CD8D /* Resources */,
 				00DEB4E8247AAB0F0050CD8D /* AppDelegate.swift */,
+				00DEB50F247ACF380050CD8D /* SideBarViewController.swift */,
+				00DEB509247AAB410050CD8D /* RevealViewController.swift */,
+				00DEB50B247AAB4E0050CD8D /* FrontViewController.swift */,
 				00DEB4EA247AAB0F0050CD8D /* SceneDelegate.swift */,
-				00DEB4EC247AAB0F0050CD8D /* ViewController.swift */,
 				00DEB4EE247AAB0F0050CD8D /* Main.storyboard */,
 				00DEB4F1247AAB100050CD8D /* Assets.xcassets */,
 				00DEB4F3247AAB100050CD8D /* LaunchScreen.storyboard */,
 				00DEB4F6247AAB100050CD8D /* Info.plist */,
 			);
 			path = "Chapter04-SideBarDIY";
+			sourceTree = "<group>";
+		};
+		00DEB4FC247AAB1D0050CD8D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				00DEB501247AAB290050CD8D /* icon01.png */,
+				00DEB4FE247AAB290050CD8D /* icon02.png */,
+				00DEB502247AAB290050CD8D /* icon03.png */,
+				00DEB4FF247AAB290050CD8D /* icon04.png */,
+				00DEB500247AAB290050CD8D /* icon05.png */,
+				00DEB4FD247AAB290050CD8D /* sidemenu.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +157,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00DEB508247AAB290050CD8D /* icon03.png in Resources */,
+				00DEB506247AAB290050CD8D /* icon05.png in Resources */,
 				00DEB4F5247AAB100050CD8D /* LaunchScreen.storyboard in Resources */,
+				00DEB503247AAB290050CD8D /* sidemenu.png in Resources */,
+				00DEB505247AAB290050CD8D /* icon04.png in Resources */,
 				00DEB4F2247AAB100050CD8D /* Assets.xcassets in Resources */,
 				00DEB4F0247AAB0F0050CD8D /* Main.storyboard in Resources */,
+				00DEB504247AAB290050CD8D /* icon02.png in Resources */,
+				00DEB507247AAB290050CD8D /* icon01.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +176,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00DEB4ED247AAB0F0050CD8D /* ViewController.swift in Sources */,
 				00DEB4E9247AAB0F0050CD8D /* AppDelegate.swift in Sources */,
+				00DEB50C247AAB4E0050CD8D /* FrontViewController.swift in Sources */,
+				00DEB510247ACF380050CD8D /* SideBarViewController.swift in Sources */,
 				00DEB4EB247AAB0F0050CD8D /* SceneDelegate.swift in Sources */,
+				00DEB50A247AAB410050CD8D /* RevealViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
