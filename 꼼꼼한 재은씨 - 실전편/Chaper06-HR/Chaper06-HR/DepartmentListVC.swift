@@ -89,4 +89,14 @@ class DepartmentListVC: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let departCd = departList[indexPath.row].departCd
+        
+        let infoVC = storyboard?.instantiateViewController(identifier: "DEPART_INFO")
+        if let _infoVC = infoVC as? DepartmentInfoVC {
+            _infoVC.departCd = departCd
+            navigationController?.pushViewController(_infoVC, animated: true)
+        }
+    }
 }

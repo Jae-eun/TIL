@@ -24,6 +24,7 @@
 		00AA6A6B24B1BC3A00E31C26 /* DepartmentDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA6A6A24B1BC3A00E31C26 /* DepartmentDAO.swift */; };
 		00AA6A6D24B217BE00E31C26 /* EmployeeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA6A6C24B217BE00E31C26 /* EmployeeDAO.swift */; };
 		4051B1C724B2E35C00192BF1 /* DepartPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4051B1C624B2E35C00192BF1 /* DepartPickerVC.swift */; };
+		40AFDA0E24D8015E0048E428 /* DepartmentInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AFDA0D24D8015E0048E428 /* DepartmentInfoVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		00AA6A6A24B1BC3A00E31C26 /* DepartmentDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentDAO.swift; sourceTree = "<group>"; };
 		00AA6A6C24B217BE00E31C26 /* EmployeeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDAO.swift; sourceTree = "<group>"; };
 		4051B1C624B2E35C00192BF1 /* DepartPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartPickerVC.swift; sourceTree = "<group>"; };
+		40AFDA0D24D8015E0048E428 /* DepartmentInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentInfoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				00AA6A4024B1B2D800E31C26 /* SceneDelegate.swift */,
 				00AA6A4224B1B2D800E31C26 /* ViewController.swift */,
 				00AA6A4424B1B2D800E31C26 /* Main.storyboard */,
+				40AFDA0D24D8015E0048E428 /* DepartmentInfoVC.swift */,
 				00AA6A6424B1B8C900E31C26 /* DepartmentListVC.swift */,
 				4051B1C624B2E35C00192BF1 /* DepartPickerVC.swift */,
 				00AA6A6624B1B8E900E31C26 /* EmployeeListVC.swift */,
@@ -198,6 +201,7 @@
 				00AA6A4324B1B2D800E31C26 /* ViewController.swift in Sources */,
 				00AA6A6524B1B8C900E31C26 /* DepartmentListVC.swift in Sources */,
 				00AA6A6B24B1BC3A00E31C26 /* DepartmentDAO.swift in Sources */,
+				40AFDA0E24D8015E0048E428 /* DepartmentInfoVC.swift in Sources */,
 				00AA6A6724B1B8E900E31C26 /* EmployeeListVC.swift in Sources */,
 				00AA6A3F24B1B2D800E31C26 /* AppDelegate.swift in Sources */,
 				4051B1C724B2E35C00192BF1 /* DepartPickerVC.swift in Sources */,

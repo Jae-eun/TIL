@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Employee ListVC-->
+        <!--사원목록-->
         <scene sceneID="Bck-gk-5Ce">
             <objects>
                 <tableViewController id="mQ2-nv-GLW" customClass="EmployeeListVC" customModule="Chaper06_HR" customModuleProvider="target" sceneMemberID="viewController">
@@ -50,13 +50,20 @@
                             <outlet property="delegate" destination="mQ2-nv-GLW" id="Jhv-kJ-eSF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="VrQ-ke-667"/>
+                    <navigationItem key="navigationItem" title="사원목록" id="VrQ-ke-667">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="tl8-1k-ctG"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="F77-J6-f2q">
+                            <connections>
+                                <action selector="add:" destination="mQ2-nv-GLW" id="LQp-VI-0J1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxR-m5-Dgf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-719" y="1442"/>
         </scene>
-        <!--Department ListVC-->
+        <!--부서목록-->
         <scene sceneID="1At-Gv-ASe">
             <objects>
                 <tableViewController id="qwk-o7-MkD" customClass="DepartmentListVC" customModule="Chaper06_HR" customModuleProvider="target" sceneMemberID="viewController">
@@ -100,17 +107,87 @@
                             <outlet property="delegate" destination="qwk-o7-MkD" id="4nl-CU-9ao"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Zhp-0C-fmX">
+                    <navigationItem key="navigationItem" title="부서목록" id="Zhp-0C-fmX">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vsJ-c9-wUE">
                             <connections>
                                 <action selector="add:" destination="qwk-o7-MkD" id="qvx-pa-jfi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="wuY-bP-NUZ" kind="show" id="GyY-rP-6MW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KZg-xN-XWJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-720" y="755"/>
+        </scene>
+        <!--부서 상세 정보-->
+        <scene sceneID="WKY-f6-G7s">
+            <objects>
+                <tableViewController id="wuY-bP-NUZ" customClass="DepartmentInfoVC" customModule="Chaper06_HR" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6dq-mT-SEj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="T9F-Pb-CZi">
+                            <rect key="frame" x="0.0" y="143" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DEPART_INFO" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DEPART_CELL" textLabel="guS-n9-T6I" detailTextLabel="uUT-Wi-fwd" style="IBUITableViewCellStyleValue1" id="If6-5v-PYi">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="If6-5v-PYi" id="h0g-ao-qtb">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="guS-n9-T6I">
+                                            <rect key="frame" x="20" y="12" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uUT-Wi-fwd">
+                                            <rect key="frame" x="350" y="12" width="44" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DEPART_INFO" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EMP_CELL" textLabel="gDl-fz-L97" style="IBUITableViewCellStyleDefault" id="qPL-c1-ANm">
+                                <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qPL-c1-ANm" id="BsW-kp-RLB">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gDl-fz-L97">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wuY-bP-NUZ" id="l7F-aS-ast"/>
+                            <outlet property="delegate" destination="wuY-bP-NUZ" id="MNu-NB-wkg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="부서 상세 정보" id="fUC-jg-VHg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9kN-Kc-eOp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="78" y="755"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1lS-h2-KZb">
