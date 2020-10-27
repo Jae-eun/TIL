@@ -117,11 +117,154 @@ void main() {
     print(i.current);
   }
 
+  // 클래스
+  // var coffee = Coffee(2);
+  // coffee.describe(); // Price is 2000.
+
+  // 상속
+  // coffee = Latte(2, 3);
+  // coffee.describe(); // Price is 3500.
+
+  // 추상 클래스
+  var americano = Americano(2);
+  americano.describe();
+  americano.description();
+
+  var latte = Latte(2, 4);
+  latte.describe();
+  latte.description();
+
+  // 인터페이스
+  americano.addIce();
+  americano.describe();
+
+  americano.addBlackSugar();
+  americano.describe();
+
   runApp(MyApp());
 }
 
 // * 모든 자료형이 클래스로 구현되어 있음
 // * 타입이 결정된 변수는 이후에 타입을 변경할 수 없음
+
+// 클래스
+// Dart는 클래스 및 믹스인 기반 상속을 지원하는 객체 지향 언어
+// 클래스는 속성과 행위를 갖는 객체를 추상화시킨 것
+
+// class Coffee {
+//   int price;
+//   int shot;
+//
+//   void describe() {
+//     print("Price is $price.");
+//   }
+//
+//   // 생성자
+//   Coffee(int shot) {
+//     this.shot = shot;
+//     price = shot * 1000;
+//   }
+// }
+
+// 상속
+// 부모 클래스가 가지고 있는 모든 것을(생성자 제외) 자식 클래스가 물려받아 같이 공유하며 나아가 확장하는 개념
+// 부모 클래스 super class, 자식 클래스 sub class라고 표현하기도 함
+// * super: 부모 클래스를 참조하는 데에 사용함. 부모 클래스의 생성자가 호출됨. `super.메소드명`을 통해 부모 클래스에 있는 메소드를 호출할 수도 있음.
+// * 단일 상속: 다중 상속을 지원하지 않음. extends 키워드를 통해 여러 개의 부모 클래스를 가질 수 없음.
+// * 오버라이딩(override): 부모 클래스의 메소드를 자식 클래스에서 재정의하여 사용할 수 있음.
+// `extends` 키워드 사용
+// 상위 클래스에 정의된 멤버 변수와 메소드를 상속 받아 새로운 클래스를 만들 수 있음.
+
+// class Latte extends Coffee {
+//   int milk;
+//
+//   Latte(int shot, this.milk): super(shot) {
+//     price = shot * 1000 + milk * 500;
+//   }
+// }
+
+// 추상 클래스
+// Dart는 `abstract class` 형식의 추상 클래스를 제공함.
+// 밑그림처럼 동작을 구현하지 않은 기능을 정의하고, 상속을 받아 실제 동작에 대한 내용을 구현(재정의)함.
+// Coffee 객체는 생성할 수 없음.
+// 완전한 메소드 `describe()`, 불완전한 메소드 `description()`을 모두 선언할 수 있음.
+// 추상 클래스를 상속 받은 하위 클래스는 추상 클래스에 명시된 불완전한 함수를 구현해야 함.
+// 완전한 메소드는 부모 클래스의 구현을 그대로 사용할 수 있음.
+
+abstract class Coffee {
+  int price;
+  int shot;
+
+  Coffee(this.shot) {
+    price = shot * 1000;
+  }
+
+  void describe() {
+    print("Price is $price.");
+  }
+
+  void description();
+}
+
+// class Americano extends Coffee {
+//   Americano(int shot): super(shot);
+//
+//   @override
+//   void description() {
+//     print("Americano는 에스프레소에 물을 타서 희석시킨 커피입니다.");
+//   }
+// }
+
+class Latte extends Coffee {
+  int milk;
+
+  Latte(int shot, this.milk): super(shot) {
+    super.price += milk * 500;
+  }
+
+  @override
+  void description() {
+    print("Latte는 오스트리아식 커피우유인 카푸치노를 미국식으로 변형한 커피입니다.");
+  }
+}
+
+// 인터페이스 `Implicit interfaces`
+// 추상 클래스에 선언된 모든 함수를 재정의하도록 규제하거나 상속에서 불가능했던 다중 상속을 가능하게 만들 수 있음.
+// Dart는 위와 같은 다른 언어의 `interface` 개념이 구분되지 않고, 모든 클래스가 그 역할을 할 수 있도록 만들었음.
+// implements한 클래스에서 구현한 내용은 사용할 수 없고, 사용하려면 상속이나 추상 클래스를 활용해야 함.
+// 특정한 기능을 구현하도록 강제만 함.
+abstract class Ice {
+  void addIce();
+}
+
+// 일반 클래스도 `Implicit interface`로 만들 수 있음.
+// 완전한 메소드도 재정의해야 함.
+class BlackSugar {
+  void addBlackSugar() {}
+}
+
+class Americano extends Coffee implements Ice, BlackSugar {
+  Americano(int shot): super(shot);
+
+  @override
+  void description() {
+    print("Americano는 에스프레소에 물을 타서 희석시킨 커피입니다.");
+  }
+
+  @override
+  void addIce() {
+    this.price += 500;
+  }
+
+  @override
+  void addBlackSugar() {
+    this.price += 300;
+  }
+}
+
+
+
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
