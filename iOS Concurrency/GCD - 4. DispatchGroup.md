@@ -6,7 +6,7 @@
 
 ## 1) 디스패치 그룹의 개념
 
-*  여러 스레드에서 진행 중인 그룹에 속한 작업들이 언제 끝날지 알기 위하여 필요함
+*  여러 스레드에서 진행 중인 작업들이 언제 끝날지 알기 위하여 필요함
 * Ex) 여러 애니메이션 효과가 겹쳐있을 때, 애니메이션이 모두 종료된 시점을 알기 위해
 
 ```swift
@@ -65,21 +65,29 @@ let group1 = DispatchGroup()
 
 for inValue in numberArray {
 	workingQueue.async(group: group1) {
-  let result = slowAdd(inValue)
-  print("더한 결과값 출력하기 = \(result)")
+  	let result = slowAdd(inValue)
+  	print("더한 결과값 출력하기 = \(result)")
   }
 }
 
 let defaultQueue = DispatchQueue.global()
-// 그룹의 모든 작업이 완료됐을 때 알림 받음
+// 그룹의 모든 작업이 완료됐을 때 실행
 group1.notify(queue: defaultQueue) {
   print("모든 작업 완료")
 }
+
+// 더한 결과값 출력하기 = 5
+// 더한 결과값 출력하기 = 1
+// 더한 결과값 출력하기 = 21
+// 더한 결과값 출력하기 = 13
+// 더한 결과값 출력하기 = 17
+// 더한 결과값 출력하기 = 9
+// group1 안의 모든 작업 완료
 ```
 
 
 
-* 어떤 이유로 그룹의 완료 알림에 비동기적으로 응답할 수 없는 경우, 디스패치 그룹에서 `wait` 메서드를 사용할 수 있음. **모든 작업이 완료될 때까지 현재 대기열을 차단하는 동기적 방법임.** 작업이 완료될 때까지, 얼마나 오래 기다릴지 기다리는 시간을 지정하는 파라미터(optional)가 필요함.(지정하지 않으면 무한 대기)
+* **동기적으로 기다리는 메서드(`wait()`)** : 어떤 이유로 그룹의 완료 알림에 비동기적으로 응답할 수 없는 경우, 디스패치 그룹에서 `wait` 메서드를 사용할 수 있음. **모든 작업이 완료될 때까지 현재 대기열을 차단하는 동기적 방법임.** 작업이 완료될 때까지, 얼마나 오래 기다릴지 기다리는 시간을 지정하는 파라미터(optional)가 필요함.(지정하지 않으면 무한 대기)
 * 메인 스레드에서는 앱이 멈추기 때문에 사용하면 안됨.
 
 ```swift
@@ -91,10 +99,13 @@ DispacthQueue.global().async(group: group1) { }
 // 그룹 내에서 현재 큐를 사용하길 원하는 다른 작업이 있다면 데드락이 발생할 가능성이 있음
 group1.wait(timeout: DispatchTime.distantFuture)
 
+// 시간 제한 걸어두고 기다리기
 if group1.wait(timeout: .now() + 60) == .timeOut {
   print("작업이 60초 안에 종료되지 않았습니다.")
 }
 ```
+
+
 
 
 
@@ -110,6 +121,43 @@ DispatchQueue.global(qos: ).async(group: group1) {
 	print("async group task finished")
 }
 ```
+
+
+
+
+
+## 3) (참고) Dispatch Work Item(디스패치 워크 아이템)
+
+
+
+## 4) (심화) Dispatch Semaphore에 대한 이해
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 [출처](https://www.inflearn.com/course/iOS-Concurrency-GCD-Operation/dashboard)
