@@ -91,7 +91,7 @@ group1.notify(queue: defaultQueue) {
 * 메인 스레드에서는 앱이 멈추기 때문에 사용하면 안됨.
 
 ```swift
-let group1 = DispatchQroup() 
+let group1 = DispatchGroup() 
 DispacthQueue.global().async(group: group1) { } 
 
 // 그룹의 모든 작업이 끝나야 다음 작업을 할 수 있는 상황이라면 사용
