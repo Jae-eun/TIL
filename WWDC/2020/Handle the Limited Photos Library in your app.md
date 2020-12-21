@@ -10,7 +10,7 @@
 
 * 사진 라이브러리에 대한 앱 접근 권한 팝업에서 `Select Photos` 라는 추가 옵션이 생김.
 
-![Handle the Limited Photos Library in your app_1](/Users/ijaeeun/Documents/TIL/WWDC/images/Handle the Limited Photos Library in your app_1.png)
+![Handle the Limited Photos Library in your app_1](https://user-images.githubusercontent.com/12438429/102794897-5c512a80-43ef-11eb-8772-82a03991cce8.png)
 
 
 
@@ -28,7 +28,7 @@
 
 
 
-![Handle the Limited Photos Library in your app_2](/Users/ijaeeun/Documents/TIL/WWDC/images/Handle the Limited Photos Library in your app_2.png)
+![Handle the Limited Photos Library in your app_2](https://user-images.githubusercontent.com/12438429/102794935-67a45600-43ef-11eb-9ad9-420224f923f3.png)
 
 ## PHPicker
 
