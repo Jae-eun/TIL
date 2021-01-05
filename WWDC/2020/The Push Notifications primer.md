@@ -29,13 +29,12 @@
 ```swift
 // Registering to Notifications: 경고 알림을 위해 애플리케이션을 설정하는 방법
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-  func application(_ application: UIApplication, 
-                  	didFinishLaunchingWithOptions launchOptions: 
-                  	[UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, 
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
   	UIApplication.shared.registerForRemoteNotifications() // 1) 가장 먼저해야 할 일: 원격 알림에 등록
   	UNUserNotificationCenter.current().delegate = self // 2) AppDelegate를 알림 센터의 대리인으로 할당
   	return true 
-	}
+    }
 ```
 
 
@@ -51,15 +50,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 ```swift
 // Registration callbacks
 func application(_ application: UIApplication, 
-									didFailToRegisterForRemoteNotificationsWithError error: Error) {
-	// The token is not currently available.
-	print("Remote notification is unavailable: \(error.localizaedDescription)")
+                 didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    // The token is not currently available.
+    print("Remote notification is unavailable: \(error.localizaedDescription)")
 }
 
 func application(_ application: UIApplication, 
-									didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-	// Forward the token to your provider, using a custom method.
-	self.forwardTokenToServer(token: deviceToken)
+                 didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    // Forward the token to your provider, using a custom method.
+    self.forwardTokenToServer(token: deviceToken)
 }
 ```
 
@@ -72,8 +71,8 @@ func application(_ application: UIApplication,
 // 디바이스 토큰은 데이터 객체로 애플리케이션에 전달됨. 서버로 보내려면 문자열로 변환해야 함. 
 func forwardTokenToServer(token: Data) {
   // 데이터를 구성 요소로 분리하고 해당 구성 요소를 16진수 문자열로 변환
-	let tokenComponents = token.map { data in String(format: "%02.2hhx", data) }
-	let deviceTokenString = tokenComponents.joined() // 다시 하나의 문자열로 결합
+    let tokenComponents = token.map { data in String(format: "%02.2hhx", data) }
+    let deviceTokenString = tokenComponents.joined() // 다시 하나의 문자열로 결합
   // 해당 문자열을 URLQuery에 추가하여 정규화 된 엔드 포인트를 만듦.
 	let queryItems = [URLQueryItem(name: "deviceToken", value: deviceTokenString)]
 	var urlComps = URLComponents(string: "www.example.com/register")! 
@@ -115,14 +114,14 @@ func forwardTokenToServer(token: Data) {
 { 
 	"aps" : {
 			"alert" : {
-						"title" : "Check out our new special!", 
-						"body" : "Avocado Bacon Burger on sale"
-			}, 
-			"sound" : "default", // 기본값
-			"badge" : 1,
-	},
-	"special" : "avocado_bacon_burger", 
-	"price" : "9.99"
+                "title" : "Check out our new special!", 
+                "body" : "Avocado Bacon Burger on sale"
+            }, 
+            "sound" : "default", // 기본값
+            "badge" : 1,
+    },
+    "special" : "avocado_bacon_burger", 
+    "price" : "9.99"
 }
 ```
 
@@ -139,24 +138,24 @@ func forwardTokenToServer(token: Data) {
 // Handling user interaction: 알림 수신을 처리하는 방법
 // 알림이 열릴 때마다 호출되는 `UNUserNotificationCenterDelegate` 메서드
 func userNotificationCenter(_ center: UNUserNotificationCenter, 
-														didReceive response: UNNotificationResponse, 
-														withCompletionHandler completionHandler: @escaping () -> Void) {
+                            didReceive response: UNNotificationResponse, 
+                            withCompletionHandler completionHandler: @escaping () -> Void) {
   
-  // 애플리케이션에 전달된 페이로드는 알림 콘텐츠의 userInfo 속성에서 추출 할 수 있음.
-	let userInfo = response.notification.request.content.userInfo 
-  // 페이로드가 있으면 JSON의 dictionary 표현에서 데이터 구문 분석
-	guard let specialName = userInfo["special"] as? String, 
-				let specialPriceString = userInfo["price"] as? String, 
-				let specialPrice = Float(specialPriceString) else {
-				// Always call the completion handler when done.: 데이터가 없으면 반환하기 전에 완료 핸들러를 호출
-				completionHandler()
-				return 
-	}
+    // 애플리케이션에 전달된 페이로드는 알림 콘텐츠의 userInfo 속성에서 추출 할 수 있음.
+    let userInfo = response.notification.request.content.userInfo 
+    // 페이로드가 있으면 JSON의 dictionary 표현에서 데이터 구문 분석
+    guard let specialName = userInfo["special"] as? String, 
+          let specialPriceString = userInfo["price"] as? String, 
+          let specialPrice = Float(specialPriceString) else {
+                // Always call the completion handler when done.: 데이터가 없으면 반환하기 전에 완료 핸들러를 호출
+                completionHandler()
+                return 
+    }
 	
-	let item = Item(name: specialName, price: specialPrice) 
-	addItemToCart(item) // 데이터가 있으면 애플리케이션에 필요한 업데이트를 수행 할 수 있음.
-	showCartViewController() // 항목이 카트에 추가되고 카트가 표시됨.
-	completionHandler() // 완료 핸들러를 호출하여 시스템에 완료되었음을 알림.
+    let item = Item(name: specialName, price: specialPrice) 
+    addItemToCart(item) // 데이터가 있으면 애플리케이션에 필요한 업데이트를 수행 할 수 있음.
+    showCartViewController() // 항목이 카트에 추가되고 카트가 표시됨.
+    completionHandler() // 완료 핸들러를 호출하여 시스템에 완료되었음을 알림.
 }
 ```
 
@@ -176,12 +175,12 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 ```swift
 // Registering to Notifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  func application(_ application: UIApplication, 
-                  	didFinishLaunchingWithOptions launchOptions: 
-                  	[UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-  	UIApplication.shared.registerForRemoteNotifications() // 1) 가장 먼저해야 할 일: 원격 알림에 등록
-  	return true 
-	}
+    func application(_ application: UIApplication, 
+                    didFinishLaunchingWithOptions launchOptions: 
+                    [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    UIApplication.shared.registerForRemoteNotifications() // 1) 가장 먼저해야 할 일: 원격 알림에 등록
+    return true 
+    }
 ```
 
 * 알림 푸시와 마찬가지로 애플리케이션에 대한 디바이스 토큰을 얻으려면 **원격 알림에 애플리케이션을 등록**해야 함.
@@ -193,10 +192,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ```swift
 // Background notification payload: 백그라운드 알림에 대한 페이로드
 {
-	"aps" : {
-			"content-available" : 1 
-	}, 
-	"myCustomKey" : "myCustomData"
+    "aps" : {
+        "content-available" : 1 
+    }, 
+    "myCustomKey" : "myCustomData"
 }
 ```
 
@@ -212,23 +211,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ```swift
 // 레스토랑 애플리케이션 콘텐츠가 최신 상태인지 확인하기 위해 매일 메뉴를 가져 오는 데에 백그라운드 알림이 사용됨.
 func application(_ application: UIApplication, 
-									didReceiveRemoteNotification userInfo: [AnyHashable: Any], 
-									fetchCompletionHandler completionHandler: 
-									@escaping (UIBackgroundFetchResult) -> Void) {
-  guard let url = URL(string: "www.example.com/todays-menu") else {
-    completionHanler(.failed) // 현재 버전의 메뉴에 대한 URL을 만들지 못한 경우, 완료 핸들러를 호출하고 백그라운드 업데이트가 실패했음을 알림.
+                 didReceiveRemoteNotification userInfo: [AnyHashable: Any], 
+                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    guard let url = URL(string: "www.example.com/todays-menu") else {
+        completionHanler(.failed) // 현재 버전의 메뉴에 대한 URL을 만들지 못한 경우, 완료 핸들러를 호출하고 백그라운드 업데이트가 실패했음을 알림.
     return 
-  }
+    }
   
-  // URL이 생성되면 오늘의 메뉴 데이터를 가져 오기 위해 URLSession을 생성해야 함.
-  let task = URLSession.shared.dataTask(with: url) { data, response, error in 
-		guard let data = data else {
-      completionHanler(.noData) // 데이터가 수신되지 않은 경우, 완료 핸들러를 호출. 백그라운드 업데이트가 데이터 없이 성공적으로 완료되었음을 알려줌.
-      return 
+    // URL이 생성되면 오늘의 메뉴 데이터를 가져 오기 위해 URLSession을 생성해야 함.
+    let task = URLSession.shared.dataTask(with: url) { data, response, error in 
+    guard let data = data else {
+        completionHanler(.noData) // 데이터가 수신되지 않은 경우, 완료 핸들러를 호출. 백그라운드 업데이트가 데이터 없이 성공적으로 완료되었음을 알려줌.
+        return 
     }
 		
-		updateMenu(withData: data) // 업데이트 된 메뉴를 가져 왔으므로 애플리케이션은 해당 데이터를 사용하여 콘텐츠를 업데이트 함.
-		completionHandler(.newData) // 완료 핸들러를 호출. 백그라운드 업데이트가 성공, 새 데이터를 검색했음을 시스템에 알림.
+    updateMenu(withData: data) // 업데이트 된 메뉴를 가져 왔으므로 애플리케이션은 해당 데이터를 사용하여 콘텐츠를 업데이트 함.
+    completionHandler(.newData) // 완료 핸들러를 호출. 백그라운드 업데이트가 성공, 새 데이터를 검색했음을 시스템에 알림.
 	}
 }
 ```
