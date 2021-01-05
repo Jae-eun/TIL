@@ -70,10 +70,10 @@ func application(_ application: UIApplication,
 // Converting token to string
 // 디바이스 토큰은 데이터 객체로 애플리케이션에 전달됨. 서버로 보내려면 문자열로 변환해야 함. 
 func forwardTokenToServer(token: Data) {
-  // 데이터를 구성 요소로 분리하고 해당 구성 요소를 16진수 문자열로 변환
+    // 데이터를 구성 요소로 분리하고 해당 구성 요소를 16진수 문자열로 변환
     let tokenComponents = token.map { data in String(format: "%02.2hhx", data) }
     let deviceTokenString = tokenComponents.joined() // 다시 하나의 문자열로 결합
-  // 해당 문자열을 URLQuery에 추가하여 정규화 된 엔드 포인트를 만듦.
+    // 해당 문자열을 URLQuery에 추가하여 정규화 된 엔드 포인트를 만듦.
 	let queryItems = [URLQueryItem(name: "deviceToken", value: deviceTokenString)]
 	var urlComps = URLComponents(string: "www.example.com/register")! 
 	urlComps.queryItems = queryItems 
@@ -81,7 +81,7 @@ func forwardTokenToServer(token: Data) {
 		return 
 	}
   
-  // URLSession을 수행하여 해당 토큰을 서버로 보내 데이터베이스에 등록
+    // URLSession을 수행하여 해당 토큰을 서버로 보내 데이터베이스에 등록
 	let task = URLSession.shared.dataTask(with: url) { data, response, error in 
 		// Handle data
 	}
@@ -96,9 +96,9 @@ func forwardTokenToServer(token: Data) {
 ```swift
 // Requesting Permissions: 응용 프로그램에서 경고를 표시 할 권한을 요청
 @IBAction func subscribeToNotifications(_ sender: Any) {
-	let userNotificationCenter = UNUserNotificationCenter.current()
-	userNotificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in 
-	print("Permission granted: \(granted)")}
+    let userNotificationCenter = UNUserNotificationCenter.current()
+    userNotificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in 
+    print("Permission granted: \(granted)")}
 }
 ```
 
@@ -112,13 +112,13 @@ func forwardTokenToServer(token: Data) {
 ```swift
 // Alert Notificaiton payload
 { 
-	"aps" : {
-			"alert" : {
-                "title" : "Check out our new special!", 
-                "body" : "Avocado Bacon Burger on sale"
-            }, 
-            "sound" : "default", // 기본값
-            "badge" : 1,
+    "aps" : {
+        "alert" : {
+            "title" : "Check out our new special!", 
+            "body" : "Avocado Bacon Burger on sale"
+        }, 
+        "sound" : "default", // 기본값
+        "badge" : 1,
     },
     "special" : "avocado_bacon_burger", 
     "price" : "9.99"
@@ -227,7 +227,7 @@ func application(_ application: UIApplication,
 		
     updateMenu(withData: data) // 업데이트 된 메뉴를 가져 왔으므로 애플리케이션은 해당 데이터를 사용하여 콘텐츠를 업데이트 함.
     completionHandler(.newData) // 완료 핸들러를 호출. 백그라운드 업데이트가 성공, 새 데이터를 검색했음을 시스템에 알림.
-	}
+    }
 }
 ```
 
