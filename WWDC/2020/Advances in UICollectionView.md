@@ -60,7 +60,7 @@
 
 
 
-###Compositional Layout
+### Compositional Layout
 
 > iOS 13에서 도입됨.
 
@@ -138,7 +138,7 @@ let dataSource = UICollectionViewDiffableDataSource<S, I>(collectionView: collec
 
 
 
-###Example
+### Example
 
 ![image](https://user-images.githubusercontent.com/12438429/105066106-f628f780-5ac1-11eb-9d4c-4c3fcb505097.png)
 
@@ -169,7 +169,7 @@ var contentConfiguration = UIListContentConfiguration.subtitleCell() // secondar
 
 
 
-##Background configurations 
+## Background configurations 
 
 * `Content configurations` 와 매우 유사하지만 **색상, 테두리 스타일 등과 같은 속성을 조정**할 수 있는 기능으로, **모든 셀의 배경에 적용**됨.
 
