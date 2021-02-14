@@ -56,26 +56,21 @@ o1.disposed(by: disposeBag)
 // * PublishSubject는 구독 이후에 새로 발생한 이벤트만 구독자로 전달함.
 
 subject.onNext("RxSwift")
-
 //>> 1 next(RxSwift)
 
 let o2 = subject.subscribe { print(">> 2", $0) }
 o2.disposed(by: disposeBag)
 
 subject.onNext("Subject")
-
 //>> 1 next(Subject)
 //>> 2 next(Subject)
 
-subject.onCompleted()
-//subject.onError(MyError.error)
-
+subject.onCompleted() //subject.onError(MyError.error)
 //>> 1 completed
 //>> 2 completed
 
 let o3 = subject.subscribe { print(">> 3", $0) }
 o3.disposed(by: disposeBag)
-
 //>> 3 completed
 
 // * Observable에 Completed이벤트가 전달된 이후에는 Next이벤트가 전달되지 않음

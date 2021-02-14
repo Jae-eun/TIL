@@ -30,4 +30,29 @@ import RxCocoa
 
 let bag = DisposeBag()
 
+// * Relay는 내부에 Subject를 랩핑하고 있음
+// * Next이벤트만 전달함
+// * 구독자가 dispose 되기 전까지 이벤트를 계속 전달함
+// * 주로 UI 이벤트 처리에 활용됨
 
+let prelay = PublishRelay<Int>()
+prelay.subscribe { print("1: \($0)") }
+    .disposed(by: bag)
+
+prelay.accept(1)
+//1: next(1)
+
+let brelay = BehaviorRelay(value: 1) // 하나의 값을 생성자로 전달해야 함
+brelay.accept(2)
+
+brelay.subscribe {
+    print("2: \($0)")
+}
+.disposed(by: bag)
+//2: next(2)
+
+brelay.accept(3)
+//2: next(3)
+
+print(brelay.value) // relay에 저장되어 있는 값 return
+//3

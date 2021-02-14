@@ -45,7 +45,6 @@ o1.subscribe {
         print(element)
     }
 }
-
 //next(0)
 //0
 //next(1)
@@ -58,7 +57,6 @@ print("----------------------------------------------")
 o1.subscribe(onNext: { element in // 클로저 파라미터로 Next이벤트에 저장된 요소가 바로 전달됨
     print(element)
 })
-
 //0
 //1
 
@@ -78,7 +76,6 @@ o1.subscribe {
     }
     print("== End ==")
 }
-
 //== Start ==
 //next(0)
 //0

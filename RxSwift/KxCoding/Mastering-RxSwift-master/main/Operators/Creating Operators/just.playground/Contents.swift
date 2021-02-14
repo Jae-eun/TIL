@@ -30,24 +30,18 @@ import RxSwift
 let disposeBag = DisposeBag()
 let element = "😀"
 
+// * just(): 하나의 요소를 그대로 방출함
+// 파라미터로 한 요소를 받아서 Observable로 리턴
+
 Observable.just(element)
    .subscribe { event in print(event) }
    .disposed(by: disposeBag)
+//next(😀)
+//completed
+
 
 Observable.just([1, 2, 3])
    .subscribe { event in print(event) }
    .disposed(by: disposeBag)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//next([1, 2, 3]) // 파라미터로 전달한 요소를 그대로 방출함
+//completed

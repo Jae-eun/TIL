@@ -26,6 +26,9 @@ import RxSwift
 /*:
  # of
  */
+// * of(): 두 개 이상의 요소를 방출할 수 있음
+// * 가변 파라미터로 선언되어 있어서 방출할 요소를 여러 값을 동시에 전달할 수 있음
+// * 요소를 그대로 방출함. 배열 -> 배열로
 
 let disposeBag = DisposeBag()
 let apple = "🍏"
@@ -35,19 +38,15 @@ let kiwi = "🥝"
 Observable.of(apple, orange, kiwi)
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)
+//next(🍏)
+//next(🍊)
+//next(🥝)
+//completed
 
 Observable.of([1, 2], [3, 4], [5, 6])
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)
-
-
-
-
-
-
-
-
-
-
-
-
+//next([1, 2])
+//next([3, 4])
+//next([5, 6])
+//completed

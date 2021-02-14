@@ -39,7 +39,6 @@ let subscription1 = Observable.from([1, 2, 3]) // 3개의 정수를 방출하는
     })
 
 subscription1.dispose()
-
 //Next 1
 //Next 2
 //Next 3
@@ -56,7 +55,6 @@ Observable.from([1, 2, 3])
     .disposed(by: bag)
 
 bag = DisposeBag()
-
 //next(1)
 //next(2)
 //next(3)

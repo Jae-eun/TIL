@@ -28,9 +28,29 @@ import RxCocoa
  # AsyncSubject
  */
 
+// * AsyncSubject는 Completed이벤트가 전달되어야 최신의 이벤트 하나를 구독자에게 전달함
+// * 전달된 이벤트가 없으면 Completed이벤트만 전달하고 종료됨
+
 let bag = DisposeBag()
 
 enum MyError: Error {
    case error
 }
 
+let subject = AsyncSubject<Int>()
+
+subject
+    .subscribe { print($0) }
+    .disposed(by: bag)
+
+subject.onNext(1)
+subject.onNext(2)
+subject.onNext(3)
+
+subject.onCompleted()
+//next(3)
+//completed
+
+//subject.onError(MyError.error)
+//error(error)
+// * Error이벤트가 발생하면 Next이벤트를 전달하지 않고 Error이벤트만 전달하고 종료됨
