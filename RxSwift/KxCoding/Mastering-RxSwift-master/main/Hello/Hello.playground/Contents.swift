@@ -32,11 +32,13 @@ Observable.just("Hello, RxSwift")
 // next(Hello, RxSwift)
 // completed
 
+
 //var a = 1
 //var b = 2
 //a + b
 //
-//a = 12
+//a = 12 // a의 값이 변경되어도 위의 a + b 연산 결과는 달라지지 않음
+
 
 // rxswift로 구현
 // 값이나 상태 변화에 따라서 결과를 도출함
@@ -48,9 +50,10 @@ Observable.combineLatest(a, b) { $0 + $1 }
     .subscribe(onNext: { print($0) })
     .disposed(by: disposeBag)
 
+// 3
+
 a.onNext(12)
 
-// 3
 // 14
 
 

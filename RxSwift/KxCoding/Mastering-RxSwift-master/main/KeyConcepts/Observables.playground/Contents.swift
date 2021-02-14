@@ -41,6 +41,7 @@ import RxSwift
 // next 이벤트는 값을 포함할 수 있음
 // vertical bar는 완료(`Completed`이벤트)를 의미하고, 이 때 Observable의 라이프사이클이 종료됨
 // X는 에러(`Error`이벤트)를 의미하고, 이 때 Observable의 라이프사이클이 종료됨
+// `Marble Diagram`: Observable과 연산자의 동작을 시각적으로 표현해줌
 
 // #1
 // create 연산자를 통해 Observerable의 동작을 직접 구현하는 방법
