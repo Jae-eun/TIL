@@ -26,17 +26,46 @@ import RxSwift
 /*:
  # deferred
  */
+// * deferred(): 특정 조건을 만족하는 Observable을 생성할 수 있음.
 
 let disposeBag = DisposeBag()
 let animals = ["🐶", "🐱", "🐹", "🐰", "🦊", "🐻", "🐯"]
 let fruits = ["🍎", "🍐", "🍋", "🍇", "🍈", "🍓", "🍑"]
 var flag = true
 
+// Observable을 리턴하는 클로저를 파라미터로 받음.
+let factory: Observable<String> = Observable.deferred {
+    flag.toggle()
 
+    if flag {
+        return Observable.from(animals)
+    } else {
+        return Observable.from(fruits)
+    }
+}
+// Error: Generic parameter 'Element' could not be inferred
+// -> Type annotation 추가
 
+factory
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(🍎)
+//next(🍐)
+//next(🍋)
+//next(🍇)
+//next(🍈)
+//next(🍓)
+//next(🍑)
+//completed
 
-
-
-
-
-
+factory
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(🐶)
+//next(🐱)
+//next(🐹)
+//next(🐰)
+//next(🦊)
+//next(🐻)
+//next(🐯)
+//completed

@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # error
  */
+// * error(): Error이벤트를 전달하고 종료하는 Observable을 생성함. 에러 처리에 사용.
 
 let disposeBag = DisposeBag()
 
@@ -33,16 +34,7 @@ enum MyError: Error {
    case error
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+Observable<Void>.error(MyError.error)
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//error(error)

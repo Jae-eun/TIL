@@ -27,14 +27,52 @@ import RxSwift
  # generate
  */
 
+// * generate(): 증가하는 크기를 바꾸거나 감소하는 시퀀스를 방출할 수 있음.
+
 let disposeBag = DisposeBag()
 let red = "🔴"
 let blue = "🔵"
 
+Observable.generate(initialState: 0,
+                    condition: { $0 <= 10 },
+                    iterate: { $0 + 2 })
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(0)
+//next(2)
+//next(4)
+//next(6)
+//next(8)
+//next(10)
+//completed
 
 
+Observable.generate(initialState: 10,
+                    condition: { $0 >= 0 },
+                    iterate: { $0 - 2 })
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(10)
+//next(8)
+//next(6)
+//next(4)
+//next(2)
+//next(0)
+//completed
 
 
-
-
-
+Observable.generate(initialState: red,
+                    condition: { $0.count < 10 },
+                    iterate: { $0.count.isMultiple(of: 2) ? $0 + red : $0 + blue })
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(🔴)
+//next(🔴🔵)
+//next(🔴🔵🔴)
+//next(🔴🔵🔴🔵)
+//next(🔴🔵🔴🔵🔴)
+//next(🔴🔵🔴🔵🔴🔵)
+//next(🔴🔵🔴🔵🔴🔵🔴)
+//next(🔴🔵🔴🔵🔴🔵🔴🔵)
+//next(🔴🔵🔴🔵🔴🔵🔴🔵🔴)
+//completed

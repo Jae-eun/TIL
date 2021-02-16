@@ -26,17 +26,33 @@ import RxSwift
 /*:
  # create
  */
+// * create(): Observable이 동작하는 방식을 직접 구현할 수 있음
 
 let disposeBag = DisposeBag()
 
 enum MyError: Error {
-   case error
+    case error
 }
 
+Observable<String>.create { (observer) -> Disposable in
+    guard let url = URL(string: "https://www.apple.com") else {
+        observer.onError(MyError.error)
+        return Disposables.create()
+    }
 
+    guard let html = try? String(contentsOf: url, encoding: .utf8) else {
+        observer.onError(MyError.error)
+        return Disposables.create()
+    }
 
+    observer.onNext(html)
+    observer.onCompleted()
 
+    observer.onNext("After completed")
 
-
-
-
+    return Disposables.create()
+}
+.subscribe { print($0) }
+.disposed(by: disposeBag)
+//html결과
+//completed

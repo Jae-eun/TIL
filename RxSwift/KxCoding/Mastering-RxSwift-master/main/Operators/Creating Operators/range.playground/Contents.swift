@@ -26,14 +26,21 @@ import RxSwift
 /*:
  # range
  */
+// * range(): 시작값에서 1씩 증가하는 시퀀스를 정해진 갯수만큼 방출함.
 
 let disposeBag = DisposeBag()
 
 Observable.range(start: 1, count: 10)
    .subscribe { print($0) }
    .disposed(by: disposeBag)
-
-
-
-
-
+//next(1)
+//next(2)
+//next(3)
+//next(4)
+//next(5)
+//next(6)
+//next(7)
+//next(8)
+//next(9)
+//next(10)
+//completed
