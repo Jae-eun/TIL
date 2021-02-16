@@ -29,7 +29,12 @@ import RxSwift
 
 let disposeBag = DisposeBag()
 
-
+// * empty(): Next이벤트를 방출하지 않음. 즉, 어떠한 요소도 방출하지 않음.
+// : Completed이벤트를
+Observable<Void>.empty()
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//completed
 
 
 
