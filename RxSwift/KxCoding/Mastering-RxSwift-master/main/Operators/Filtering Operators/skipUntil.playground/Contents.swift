@@ -26,6 +26,18 @@ import RxSwift
 /*:
  # skipUntil
  */
+// * skipUntil(): 파라미터로 받은 Observerable이 요소를 방출할 때까지 원래 Observable이 방출하는 요소를 무시함.
 
 let disposeBag = DisposeBag()
 
+let subject = PublishSubject<Int>()
+let trigger = PublishSubject<Int>()
+
+subject.skipUntil(trigger)
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+
+subject.onNext(1)
+trigger.onNext(0)
+subject.onNext(2)
+//next(2)

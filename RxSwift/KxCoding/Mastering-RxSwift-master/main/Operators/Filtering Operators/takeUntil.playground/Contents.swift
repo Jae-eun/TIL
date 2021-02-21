@@ -26,7 +26,24 @@ import RxSwift
 /*:
  # takeUntil
  */
+// * takeUntil(): 파라미터로 받은 Observable에서 Next이벤트를 전달하기 전까지 원본 Observable에서 Next이벤트를 전달함.
 
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+let subject = PublishSubject<Int>()
+let trigger = PublishSubject<Int>()
+
+subject.takeUntil(trigger)
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+
+subject.onNext(1)
+subject.onNext(2)
+//next(1)
+//next(2)
+
+trigger.onNext(0)
+//completed
+
+subject.onNext(3)

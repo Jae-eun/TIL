@@ -354,8 +354,6 @@
 				AA8A5C3622FAA5CD0020C1E6 /* Combining Operators */,
 				AA44346123045F1B00339C95 /* Conditional Operators */,
 				AAA9F948230523BE00539F6C /* Time-based Operators */,
-				AA72EE8022A4146D009AC871 /* Utility Operators */,
-				AA72EE7F22A41457009AC871 /* Connectable Operators */,
 			);
 			path = Operators;
 			sourceTree = "<group>";
@@ -602,20 +600,6 @@
 				AA64FA5222A4A9EC00CF3EF0 /* sampleLatest.playground */,
 			);
 			path = "Filtering Operators";
-			sourceTree = "<group>";
-		};
-		AA72EE7F22A41457009AC871 /* Connectable Operators */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Connectable Operators";
-			sourceTree = "<group>";
-		};
-		AA72EE8022A4146D009AC871 /* Utility Operators */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Utility Operators";
 			sourceTree = "<group>";
 		};
 		AA72EE8422A414A0009AC871 /* Transforming Operators */ = {

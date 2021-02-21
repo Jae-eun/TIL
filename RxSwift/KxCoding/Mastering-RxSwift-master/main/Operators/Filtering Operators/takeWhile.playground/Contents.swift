@@ -26,8 +26,14 @@ import RxSwift
 /*:
  # takeWhile
  */
+// * takeWhile(): 클로저로 전달한 조건을 만족시키는 요소만 방출하는데, 조건을 만족시키지 않을 때부터 더이상 방출하지 않음.
 
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
+Observable.from(numbers)
+    .takeWhile { !$0.isMultiple(of: 2) }
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(1)
+//completed

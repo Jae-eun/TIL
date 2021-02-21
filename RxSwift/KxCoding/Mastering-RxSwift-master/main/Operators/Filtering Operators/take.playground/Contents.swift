@@ -26,12 +26,18 @@ import RxSwift
 /*:
  # take
  */
+// * take(): 정수를 파라미터로 받아 해당 수만큼만 요소를 방출함.
 
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
-
-
-
-
+Observable.from(numbers)
+    .take(5)
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(1)
+//next(2)
+//next(3)
+//next(4)
+//next(5)
+//completed

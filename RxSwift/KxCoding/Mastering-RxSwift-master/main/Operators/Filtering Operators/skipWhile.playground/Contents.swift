@@ -26,6 +26,22 @@ import RxSwift
 /*:
  # skipWhile
  */
+// * skipWhile(): 조건에 부합하는 동안 방출되는 요소를 무시하고, 조건에 맞지 않게 된 이후부터 방출된 요소가 전달됨.
 
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+Observable.from(numbers)
+    .skipWhile { !$0.isMultiple(of: 2) }
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(2)
+//next(3)
+//next(4)
+//next(5)
+//next(6)
+//next(7)
+//next(8)
+//next(9)
+//next(10)
+//completed
