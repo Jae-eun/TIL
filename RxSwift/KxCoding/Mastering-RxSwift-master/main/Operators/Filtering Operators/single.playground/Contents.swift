@@ -29,6 +29,10 @@ import RxSwift
 // * single(): 원본 Observable에서 첫번째 요소만 방출하거나 조건과 일치하는 첫번째 요소만 방출함.
 // 하나의 요소만 방출을 허용하고, 2개 이상의 요소가 방출되면 Error이벤트를 전달함.
 
+//func single() -> Observable<Element> {
+//    return SingleAsync(source: self.asObservable())
+//}
+
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

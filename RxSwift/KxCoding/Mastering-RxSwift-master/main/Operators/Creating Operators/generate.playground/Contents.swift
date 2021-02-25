@@ -29,6 +29,10 @@ import RxSwift
 
 // * generate(): 증가하는 크기를 바꾸거나 감소하는 시퀀스를 방출할 수 있음.
 
+// func generate(initialState: Self.Element, condition: @escaping (Self.Element) throws -> Bool, scheduler: RxSwift.ImmediateSchedulerType = CurrentThreadScheduler.instance, iterate: @escaping (Self.Element) throws -> Self.Element) -> RxSwift.Observable<Self.Element> {
+//        return Generate(initialState: initialState, condition: condition, iterate: iterate, resultSelector: { $0 }, scheduler: scheduler)
+// }
+
 let disposeBag = DisposeBag()
 let red = "🔴"
 let blue = "🔵"

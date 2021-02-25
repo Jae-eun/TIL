@@ -28,6 +28,14 @@ import RxSwift
  */
 // * take(): 정수를 파라미터로 받아 해당 수만큼만 요소를 방출함.
 
+// func take(_ count: Int) -> Observable<Element> {
+//     if count == 0 {
+//         return Observable.empty()
+//     } else {
+//         return TakeCount(source: self.asObservable(), count: count)
+//     }
+// }
+
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

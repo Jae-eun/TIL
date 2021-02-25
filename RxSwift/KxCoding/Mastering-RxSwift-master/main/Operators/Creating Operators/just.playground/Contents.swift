@@ -31,6 +31,9 @@ let disposeBag = DisposeBag()
 let element = "😀"
 
 // * just(): 하나의 요소를 그대로 방출함
+
+// func just(_ element: Self.Element) -> RxSwift.Observable<Self.Element>
+
 // 파라미터로 한 요소를 받아서 Observable로 리턴
 
 Observable.just(element)

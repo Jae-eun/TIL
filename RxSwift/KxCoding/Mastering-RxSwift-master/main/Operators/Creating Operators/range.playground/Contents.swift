@@ -26,7 +26,11 @@ import RxSwift
 /*:
  # range
  */
-// * range(): 시작값에서 1씩 증가하는 시퀀스를 정해진 갯수만큼 방출함.
+// * range(): 시작 값에서 1씩 증가하는 시퀀스를 정해진 갯수만큼 방출함.
+
+// func range(start: Self.Element, count: Self.Element, scheduler: RxSwift.ImmediateSchedulerType = CurrentThreadScheduler.instance) -> RxSwift.Observable<Self.Element> {
+//      return RangeProducer<Element>(start: start, count: count, scheduler: scheduler)
+// }
 
 let disposeBag = DisposeBag()
 

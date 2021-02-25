@@ -28,6 +28,8 @@ import RxSwift
  */
 // * filter(): Observable이 방출하는 요소를 필터링함.
 
+// func filter(_ predicate: @escaping (Self.Element) throws -> Bool) -> RxSwift.Observable<Self.Element>
+
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

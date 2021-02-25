@@ -29,6 +29,8 @@ import RxSwift
 // * distinctUntilChanged(): 동일한 요소가 연속적으로 방출되지 않도록 필터링 함.
 // 원본 Observable에서 전달되는 2개의 요소를 순서대로 비교하여 이전 요소와 동일하면 방출하지 않음.
 
+// func distinctUntilChange() -> RxSwift.Observable<Self.Element>
+
 let disposeBag = DisposeBag()
 let numbers = [1, 1, 3, 2, 2, 3, 1, 5, 5, 7, 7, 7]
 

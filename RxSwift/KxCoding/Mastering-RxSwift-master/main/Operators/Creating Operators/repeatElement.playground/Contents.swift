@@ -26,7 +26,11 @@ import RxSwift
 /*:
  # repeatElement
  */
-// * repeatElement(): 동일한 요소를 반복적으로 무한 방출함
+// * repeatElement(): 동일한 요소를 반복적으로 무한 방출함.
+
+// func repeatElement(_ element: Self.Element, scheduler: RxSwift.ImmediateSchedulerTyep = CurrentThreadScheduler.instance) -> RxSwift.Observable<Self.Element> {
+//      return RepeatElement(element: element, scheduler: scheduler)
+// }
 
 let disposeBag = DisposeBag()
 let element = "❤️"

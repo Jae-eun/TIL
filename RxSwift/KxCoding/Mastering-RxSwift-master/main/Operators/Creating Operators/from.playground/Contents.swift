@@ -28,6 +28,8 @@ import RxSwift
  */
 // * from(): 배열의 요소를 하나씩 방출함
 
+// func from(_ array: [Self.Element], scheduler: RxSwift.ImmediateSchedulerType = CurrentThreadScheduler.instance) -> RxSwift.Observable<Self.Element>
+
 let disposeBag = DisposeBag()
 let fruits = ["🍏", "🍎", "🍋", "🍓", "🍇"]
 

@@ -29,6 +29,10 @@ import RxSwift
 // * takeLast(): Completed이벤트가 발생한 시점에 전달한 파라미터 수만큼의 방출된 마지막 요소를 전달함.
 // 구독자로 전달되는 시점이 지연됨.
 
+// func takeLast(_ count: Int) -> Observable<Element> {
+//     return TakeLast(source: self.asObservable(), count: count)
+// }
+
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

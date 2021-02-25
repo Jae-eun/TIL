@@ -28,6 +28,10 @@ import RxSwift
  */
 // * deferred(): 특정 조건을 만족하는 Observable을 생성할 수 있음.
 
+// func deffered(_ observableFactory: @escaping () throws -> RxSwift.Observable<Self.Element>) -> RxSwift.Observable<Self.Element> {
+// return Deferred(ObservableFactory: observableFactory)
+// }
+
 let disposeBag = DisposeBag()
 let animals = ["🐶", "🐱", "🐹", "🐰", "🦊", "🐻", "🐯"]
 let fruits = ["🍎", "🍐", "🍋", "🍇", "🍈", "🍓", "🍑"]

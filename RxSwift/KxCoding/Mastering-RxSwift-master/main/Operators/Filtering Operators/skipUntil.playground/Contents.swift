@@ -28,6 +28,10 @@ import RxSwift
  */
 // * skipUntil(): 파라미터로 받은 Observerable이 요소를 방출할 때까지 원래 Observable이 방출하는 요소를 무시함.
 
+// func skipUntil<Source: ObservableType>(_ other: Source) -> Observable<Element> {
+//     return SkipUntil(source: self.asObservable(), other: other.asObservable())
+// }
+
 let disposeBag = DisposeBag()
 
 let subject = PublishSubject<Int>()

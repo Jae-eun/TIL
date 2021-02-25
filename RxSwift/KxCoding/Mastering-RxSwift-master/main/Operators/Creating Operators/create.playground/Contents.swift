@@ -28,6 +28,8 @@ import RxSwift
  */
 // * create(): Observable이 동작하는 방식을 직접 구현할 수 있음
 
+//func create(_ subscribe: @escaping (RxSwift.AnyObserver<Self.Element>) -> RxSwift.Disposable) -> RxSwift.Observable<Self.Element>
+
 let disposeBag = DisposeBag()
 
 enum MyError: Error {

@@ -28,6 +28,10 @@ import RxSwift
  */
 // * elementAt(): 파라미터에 해당하는 인덱스 요소만 방출하고 Completed이벤트를 방출함.
 
+// func elementAt(_ index: Int) -> RxSwift.Observable<Self.Element> {
+//      return ElementAt(source: self.asObservable(), index: index, throwOnEmpty: true)
+// }
+
 let disposeBag = DisposeBag()
 let fruits = ["🍏", "🍎", "🍋", "🍓", "🍇"]
 

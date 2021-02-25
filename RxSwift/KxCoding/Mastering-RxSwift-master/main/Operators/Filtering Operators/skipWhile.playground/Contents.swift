@@ -28,6 +28,10 @@ import RxSwift
  */
 // * skipWhile(): 조건에 부합하는 동안 방출되는 요소를 무시하고, 조건에 맞지 않게 된 이후부터 방출된 요소가 전달됨.
 
+// func skipWhile(_ predicate: @escaping (Element) throws -> Bool) -> Observable<Element> {
+//     return SkipWhile(source: self.asObservable(), predicate: predicate)
+// }
+
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

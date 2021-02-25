@@ -28,6 +28,10 @@ import RxSwift
  */
 // * takeWhile(): 클로저로 전달한 조건을 만족시키는 요소만 방출하는데, 조건을 만족시키지 않을 때부터 더이상 방출하지 않음.
 
+// func takeWhile(_ predicate: @escaping (Element) throws -> Bool) -> Observable<Element> {
+//     return TakeWhile(source: self.asObservable(), predicate: predicate)
+// }
+
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

@@ -26,8 +26,15 @@ import RxSwift
 /*:
  # ignoreElements
  */
-// *ignoreElements(): Observable이 방출하는 Next이벤트를 무시하고, Completed이벤트와 Error이벤트만 Observer로 전달함.
+// * ignoreElements(): Observable이 방출하는 Next이벤트를 무시하고, Completed이벤트와 Error이벤트만 Observer로 전달함.
 // : 작업의 성공과 실패에만 관심있을 때 사용함.
+
+// func ignoreElements() -> RxSwift.Completable {
+//        return self.flatMap { _ in
+//                return Observable<Never>.empty()
+//        }
+//        .asCompletable()
+// }
 
 let disposeBag = DisposeBag()
 let fruits = ["🍏", "🍎", "🍋", "🍓", "🍇"]

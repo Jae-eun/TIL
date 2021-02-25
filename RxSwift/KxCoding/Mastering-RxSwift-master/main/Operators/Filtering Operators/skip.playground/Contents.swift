@@ -28,6 +28,10 @@ import RxSwift
  */
 // * skip(): 지정된 수만큼 Observable이 방출한 특정 요소를 무시하고, 그 이후 방출되는 요소만 구독자로 전달함.
 
+// func skip(_ count: Int) -> RxSwift.Observable<Self.Element> {
+//     return SkipCount(source: self.asObservable(), count: count)
+// }
+
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

@@ -28,6 +28,10 @@ import RxSwift
  */
 // * takeUntil(): 파라미터로 받은 Observable에서 Next이벤트를 전달하기 전까지 원본 Observable에서 Next이벤트를 전달함.
 
+// func takeUntil<Source: ObservableType>(_ other: Source) -> Observable<Element> {
+//     return TakeUntil(source: self.asObservable(), other: other.asObservable())
+// }
+
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

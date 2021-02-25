@@ -27,6 +27,11 @@ import RxSwift
  # of
  */
 // * of(): 두 개 이상의 요소를 방출할 수 있음
+
+// func of(_ elements: Self.Element..., scheduler: RxSwift.ImmediateSchedulerType = CurrentThreadScheduler.instance) -> RxSwift.Observable<Self.Element> {
+//        return ObservableSequence(elements: elements, scheduler: scheduler)
+// }
+
 // * 가변 파라미터로 선언되어 있어서 방출할 요소를 여러 값을 동시에 전달할 수 있음
 // * 요소를 그대로 방출함. 배열 -> 배열로
 

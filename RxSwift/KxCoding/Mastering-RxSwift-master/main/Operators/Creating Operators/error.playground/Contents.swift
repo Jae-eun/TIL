@@ -28,6 +28,8 @@ import RxSwift
  */
 // * error(): Error이벤트를 전달하고 종료하는 Observable을 생성함. 에러 처리에 사용.
 
+//func error(_ error: Error) -> RxSwift.Observable<Self.Element>
+
 let disposeBag = DisposeBag()
 
 enum MyError: Error {
