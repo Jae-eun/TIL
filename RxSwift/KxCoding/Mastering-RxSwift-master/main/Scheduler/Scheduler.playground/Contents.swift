@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # Scheduler
  */
+// * 특정 코드가 실행되는 컨텍스트를 추상화한 것
 
 let bag = DisposeBag()
 

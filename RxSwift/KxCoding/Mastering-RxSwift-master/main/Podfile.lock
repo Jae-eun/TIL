@@ -6,7 +6,7 @@ PODS:
   - Differentiator (4.0.1)
   - "NSObject+Rx (5.0.2)":
     - RxSwift (~> 5.0)
-  - ReachabilitySwift (4.3.1)
+  - ReachabilitySwift (5.0.0)
   - RxAlamofire (5.1.0):
     - RxAlamofire/Core (= 5.1.0)
   - RxAlamofire/Core (5.1.0):
@@ -25,8 +25,8 @@ PODS:
   - RxKeyboard (1.0.0):
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
-  - RxReachability (1.0.0):
-    - ReachabilitySwift (~> 4.3.1)
+  - RxReachability (1.1.0):
+    - ReachabilitySwift (~> 5.0)
     - RxCocoa (~> 5)
     - RxSwift (~> 5)
   - RxRelay (5.1.1):
@@ -75,13 +75,13 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   "NSObject+Rx": 2eb2cf51fd1c554118449a7fbc36e4cd620b9e94
-  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RxAlamofire: a2d7621de4c23a0c6e7b476b504acc32838ee341
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxGesture: a3f8dd6adf078110ed5e1c9c30d09d705a09852e
   RxKeyboard: 6683c4344304a00f943c158bd8a43ce5469c82a7
-  RxReachability: 21d3e96f39bc166a21c357e923f47dec148ca97b
+  RxReachability: 3da1c23ba6d93dabc004290cda61dd9e7884422d
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
