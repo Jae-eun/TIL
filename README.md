@@ -44,6 +44,10 @@
 
 ### [자료구조](https://github.com/Jae-eun/TIL/tree/master/Data%20Structure)
 
+###[데이터베이스]() 
+
+###[디자인 패턴]() 
+
 ### [컴퓨터 구조](https://github.com/Jae-eun/TIL/tree/master/Computer%20Organization%20and%20Design)
 
 ### [모두의 파이썬 책 - 실습](https://github.com/Jae-eun/TIL/tree/master/python)
