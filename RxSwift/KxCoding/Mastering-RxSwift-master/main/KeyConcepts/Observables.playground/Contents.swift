@@ -64,6 +64,37 @@ Observable.from([0, 1])
 
 
 
+//let ofObservable: Observable<Int> = Observable<Int>.of(1,2,3,4,5)
+//ofObservable.subscribe {
+//    print($0)
+//}
 
+let arrayOfObservable: Observable<[Int]> = Observable<[Int]>.of([1,2,3])
+//let justObservable: Observable<Int> = Observable<Int>.just(1)
+let fromObservable: Observable<Int> = Observable<Int>.from([1,2,3])
+let emptyObservable = Observable<Void>.empty()
+//let neverObservable = Observable<Any>.never()
+//let rangeObservable = Observable<Int>.range(start: 3, count: 3)
+//let repeatElementObservable = Observable<Int>.repeatElement(3)
+//let intervalObservable = Observable<Int>.interval(3, scheduler: MainScheduler.instance)
+//intervalObservable.subscribe {
+//    print($0)
+//}
+//
+//let observable = Observable<Int>.create({ observer -> Disposable in
+//    observer.onNext(3) // 3이 저장된 Next 이벤트가 전달됨
+//    observer.on(.next(4)) // observer로 4가 저장되어 있는 Next 이벤트를 전달함
+//    observer.onCompleted() // Completed 이벤트가 전달되고 Observable이 종료됨
+//
+//    return Disposables.create() // 메모리 정리
+//})
+//observable.subscribe {
+//  print($0)
+//}
+let disposeBag = DisposeBag()
 
-
+Observable.of("A", "B", "C")
+.subscribe {
+    print($0)
+}
+.disposed(by: disposeBag)
