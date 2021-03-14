@@ -66,7 +66,7 @@ Observable.generate(initialState: 10,
 
 
 Observable.generate(initialState: red,
-                    condition: { $0.count < 10 },
+                    condition: { $0.count < 5 },
                     iterate: { $0.count.isMultiple(of: 2) ? $0 + red : $0 + blue })
     .subscribe { print($0) }
     .disposed(by: disposeBag)

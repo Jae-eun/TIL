@@ -54,7 +54,29 @@ Observable<String>.create { (observer) -> Disposable in
 
     return Disposables.create()
 }
-.subscribe { print($0) }
-.disposed(by: disposeBag)
+//.subscribe { print($0) }
+//.disposed(by: disposeBag)
 //html결과
 //completed
+
+let source: Observable<Int> = Observable.create { observer in
+    for i in 1...3 {
+        observer.on(.next(i))
+    }
+    observer.on(.completed)
+
+    // Note that this is optional. If you require no cleanup you can return
+    // `Disposables.create()` (which returns the `NopDisposable` singleton)
+    // 이것은 선택사항임. 클린업이 필요하지 않다면
+    // `Disposables.create()`(`NopDisposable` 싱글턴을 반환하는)을 반환하면 됨
+    // Nop = No Operation
+    // NopDisposable: dispose할 때 아무것도 하지 않는 disposable
+    return Disposables.create {
+        print("disposed")
+    }
+}
+
+source.subscribe {
+    print($0)
+}
+

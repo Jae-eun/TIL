@@ -237,16 +237,34 @@ observable.subscribe(onNext: { (element) in
 
 : 구독을 취소하여 `Observable`을 수동으로 종료시킵니다.
 
+> `Completed` 이벤트도 전달되지 않기 때문에 dispose 메소드를 직접 호출하는 것은 권장하지 않음.
+
 ```swift
-let observable = Observable.of(1, 2, 3)
-let subscription = observable.subscribe({ num in 
+let subscription1 = Observable.of(1, 2, 3).subscribe({ num in 
 	print(num)
 })
-subscription.dispose() // disposable을 리턴함. 메모리에서 해제됨.
+subscription1.dispose() // disposable을 리턴함. 메모리에서 해제됨.
 //next(1)
 //next(2)
 //next(3)
 //completed
+
+let subscription2 = Observable.from([1, 2, 3]) // 3개의 정수를 방출하는 Observable
+    .subscribe(onNext: { element in
+        print("Next", element)
+    }, onError: { error in
+        print("Error", error)
+    }, onCompleted: {
+        print("Completed")
+    }, onDisposed: { // Observable이 전달하는 이벤트는 아님
+        print("Disposed") // Observable과 관련된 모든 리소스가 제거된 후에 호출됨
+    })
+subscription2.dispose()
+//Next 1
+//Next 2
+//Next 3
+//Completed
+//Disposed
 ```
 
 
@@ -268,4 +286,3 @@ Observable.of("A", "B", "C")
 //next(C)
 //completed
 ```
-

@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # map
  */
+// * map() : 
 
 let disposeBag = DisposeBag()
 let skills = ["Swift", "SwiftUI", "RxSwift"]

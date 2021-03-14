@@ -26,7 +26,21 @@ import RxSwift
 /*:
  # toArray
  */
+// * toArray() : Completed 이벤트 발생 후, 원본 Observable이 방출하는 모든 요소를 하나의 배열로 방출함.
+
+//func toArray() -> Single<[Self.Element]>
 
 let disposeBag = DisposeBag()
 
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+let subject = PublishSubject<Int>()
+subject
+    .toArray()
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+
+subject.onNext(1)
+subject.onNext(2)
+subject.onCompleted()
+//success([1, 2])

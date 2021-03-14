@@ -28,7 +28,7 @@ import RxSwift
  */
 // * repeatElement(): 동일한 요소를 반복적으로 무한 방출함.
 
-// func repeatElement(_ element: Self.Element, scheduler: RxSwift.ImmediateSchedulerTyep = CurrentThreadScheduler.instance) -> RxSwift.Observable<Self.Element> {
+// func repeatElement(_ element: Self.Element, scheduler: RxSwift.ImmediateSchedulerType = CurrentThreadScheduler.instance) -> RxSwift.Observable<Self.Element> {
 //      return RepeatElement(element: element, scheduler: scheduler)
 // }
 
@@ -36,10 +36,12 @@ let disposeBag = DisposeBag()
 let element = "❤️"
 
 Observable.repeatElement(element)
-    .take(3) // 지정한 개수만큼만 방출함
+//    .take(3) // 지정한 개수만큼만 방출함
     .subscribe { print($0) }
     .disposed(by: disposeBag)
 //next(❤️)
 //next(❤️)
 //next(❤️)
 //completed
+
+

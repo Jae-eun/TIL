@@ -27,7 +27,7 @@ import RxSwift
  # empty
  */
 // * empty(): Next이벤트를 방출하지 않음. 즉, 어떠한 요소도 방출하지 않음.
-//          : Completed이벤트를 전달하는 Observer를 생성함
+//          : Completed이벤트를 전달하는 Observable을 생성함
 
 //func empty() -> RxSwift.Observable<Self.Element>
 
