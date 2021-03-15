@@ -19,7 +19,10 @@
 ```swift
 // 함수 원형
 func create(_ subscribe: @escaping (AnyObserver<Self.Element>) -> Disposable) -> Observable<Self.Element>
+// AnyObserver: 해당 Observable을 구독하게 될 Observer. Observer의 on 메소드를 통해 이벤트를 전달함.
+// 
 
+// 타입 추론이 불가능하기 때문에 명시적으로 타입을 제네릭으로 작성해야 함.
 let source: Observable<Int> = Observable.create { observer in
     for i in 1...3 {
         observer.on(.next(i))
@@ -113,15 +116,19 @@ Observable.generate(initialState: red,
 
 > 옵저버가 구독할 때까지 `Observable`을 생성하지 않고, 각 옵저버에 대해 새로운 `Observable`을 생성
 >
-> 특정 조건을 만족하는 `Observable`을 생성할 수 있음
+> 외부의 특정 조건에 따라 다른 `Observable`을 생성할 수 있음
+>
+> 상태에 따라 다른 데이터를 처리해야 될 때 사용할 수 있음
 
 ![image](https://user-images.githubusercontent.com/12438429/110915099-92e97200-835a-11eb-8d7d-8729477d9f84.png)
 
 ```swift
 // 함수 원형
-func deffered(_ observableFactory: @escaping () throws -> Observable<Self.Element>) -> Observable<Self.Element> {
+func deffered(_ observableFactory: @escaping () throws -> Observable<Self.Element>) {
 		return Deferred(ObservableFactory: observableFactory)
 }
+// Observable을 만들어내는 팩토리 클로저를 인자로 받음.
+// 실제 구독이 일어나는 시점에서야 실제 Observable을 만들어냄. (defer: 연기하다)
 
 let disposeBag = DisposeBag()
 let animals = ["🐶", "🐱", "🐰", "🦊", "🐻"]
@@ -228,18 +235,21 @@ Observable<Void>.error(MyError.error)
 
 > 다른 객체나 데이터 구조를 `Observable`로 변환
 >
-> 배열의 요소를 하나씩 방출함
+> 배열의 요소를 하나씩 순서대로 방출함
 
  ![image](https://user-images.githubusercontent.com/12438429/110915259-bf9d8980-835a-11eb-8dc5-0fbc88b3e1f8.png)
 
 ```swift
 // 함수 원형
 func from(_ array: [Self.Element],
-          scheduler: ImmediateSchedulerType = CurrentThreadScheduler.instance) -> Observable<Self.Element>
+          scheduler: ImmediateSchedulerType = CurrentThreadScheduler.instance) -> Observable<Self.Element> { 
+	return ObservableSequence(elements: array, scheduler: scheduler)
+}
 
 let disposeBag = DisposeBag()
 let fruits = ["🍎", "🍋", "🍇"]
 
+// 값을 직접 받기 때문에 타입 추론 가능
 Observable.from(fruits)
    .subscribe { print($0) }
    .disposed(by: disposeBag)
@@ -253,12 +263,34 @@ Observable.from(fruits)
 
 ### Interval
 
-> 특정 시간 간격을 두고 정수 시퀀스를 방출하는  `Observable` 생성
+> 특정 시간 간격을 두고 1씩 증가하는 정수 시퀀스를 방출하는  `Observable` 생성
+>
+> * 필터링 연산자 조건을 넣지 않으면, 이 옵저버블은 종료되지 않고 무한히 정수를 방출시킴.
 
 ![image](https://user-images.githubusercontent.com/12438429/110915265-c3c9a700-835a-11eb-98ec-4daba54c06c9.png)
 
 ```swift
+// 함수 원형
+func interval(_ period: RxTimeInterval,
+              scheduler: SchedulerType) -> Observable<Element> {
+	  return Timer(
+    		dueTime: period,
+    		period: period, 
+    		scheduler: scheduler
+    ) 
+}
 
+let disposeBag = DisposeBag()
+
+Observable<Int>.interval(.seconds(1),
+                         scheduler: MainScheduler.instance)
+		.takeWhile { $0 < 3 }
+		.subscribe { print($0) }
+		.disposed(by: disposeBag)
+//next(0)
+//next(1)
+//next(2)
+//completed
 ```
 
 
@@ -327,14 +359,15 @@ Observable.range(start: 1, count: 5)
 ### RepeatElement
 
 > 특정 요소나 시퀀스를 반복적으로 무한 방출하는  `Observable` 생성
+>
+> * 필터링 연산자 조건을 넣지 않으면, 이 옵저버블은 종료되지 않고 무한히 정수를 방출시킴.
 
 ![image](https://user-images.githubusercontent.com/12438429/110915385-e6f45680-835a-11eb-813a-b4699cae5185.png)
 
 ```swift
-
 // 함수 원형
 func repeatElement(_ element: Self.Element,
-                   scheduler: ImmediateSchedulerType = CurrentThreadScheduler.instance) -> RxSwift.Observable<Self.Element> {
+                   scheduler: ImmediateSchedulerType = CurrentThreadScheduler.instance) -> Observable<Self.Element> {
       return RepeatElement(element: element, scheduler: scheduler)
 }
 
@@ -342,36 +375,43 @@ let disposeBag = DisposeBag()
 let element = "😀"
 
 Observable.repeatElement(element)
+		.take(3)
     .subscribe { print($0) }
     .disposed(by: disposeBag)
 //next(😀)
 //next(😀)
 //next(😀)
-//.....
-```
-
-
-
-### Start
-
-> 함수의 반환값을 방출하는 `Observable` 생성
-
-![image](https://user-images.githubusercontent.com/12438429/110915392-ea87dd80-835a-11eb-96d5-ab2ec5ae97db.png)
-
-```swift
-
 ```
 
 
 
 ### Timer
 
-> 주어진 지연 후에 단일 요소를 방출하는 `Observable` 생성
+> 지정한 시간 이후에 단일 요소를 방출하는 `Observable` 생성
 
 ![image](https://user-images.githubusercontent.com/12438429/110915397-ee1b6480-835a-11eb-84f0-346f3fcbf9f4.png)
 
 ```swift
+// 함수 원형
+func timer(_ dueTime: RxTimeInterval,
+           period: RxTimeInterval? = nil,
+           scheduler: SchedulerType) -> Observable<Element> {
+  	return Timer(
+    		dueTime: dueTime, 
+    		period: period, 
+    		scheduler: scheduler
+    )
+}
 
+let disposeBag = DisposeBag()
+
+Observable<Int>.timer(.seconds(2),
+                      scheduler: MainScheduler.instance)
+		.subscribe { print($0) }
+		.disposed(by: disposeBag)
+// 2초 후
+//next(0)
+//completed
 ```
 
 
