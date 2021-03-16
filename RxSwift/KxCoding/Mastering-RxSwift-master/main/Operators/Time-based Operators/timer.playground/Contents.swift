@@ -26,7 +26,39 @@ import RxSwift
 /*:
  # timer
  */
+// * timer() : 지연 시간과 반복 주기를 지정해서 정수를 방출함.
 
-let bag = DisposeBag()
+//extension ObservableType where Element: RxAbstractInteger {
+//    func timer(_ dueTime: RxTimeInterval,
+//               period: RxTimeInterval? = nil,
+//               scheduler: SchedulerType)
+//        -> Observable<Element> {
+//        return Timer(
+//            dueTime: dueTime,
+//            period: period,
+//            scheduler: scheduler
+//        )
+//    }
+//}
 
+// 첫번째 파라미터 : 첫번째 요소가 구독자에게 전달되는 시점
 
+let disposebag = DisposeBag()
+
+Observable<Int>.timer(.seconds(1),
+                      scheduler: MainScheduler.instance)
+    .subscribe { print($0) }
+    .disposed(by: disposebag)
+//next(0)
+//completed
+
+Observable<Int>.timer(.seconds(1),
+                      period: .milliseconds(500),
+                      scheduler: MainScheduler.instance)
+    .subscribe { print($0) }
+    .disposed(by: disposebag)
+//next(0)
+//next(1)
+//next(2)
+//next(3)
+//... 0.5초마다 반복 방출
