@@ -26,10 +26,27 @@ import RxSwift
 /*:
  # map
  */
-// * map() : 
+// * map() : 원본 옵저버블이 방출하는 요소를 대상으로 함수를 실행하고 그 결과를 새로운 옵저버블로 리턴함.
+
+//func map<Result>(_ transform: @escaping (Self.Element) throws -> Result) -> Observable<Result>
 
 let disposeBag = DisposeBag()
 let skills = ["Swift", "SwiftUI", "RxSwift"]
 
+Observable.from(skills)
+    .map { "Hello, \($0)" }
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(Hello, Swift)
+//next(Hello, SwiftUI)
+//next(Hello, RxSwift)
+//completed
 
-
+Observable.from(skills)
+    .map { $0.count }
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next(5)
+//next(7)
+//next(7)
+//completed

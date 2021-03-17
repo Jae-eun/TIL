@@ -26,6 +26,12 @@ import RxSwift
 /*:
  # flatMapFirst
  */
+// * flatMapFirst() : 처음에 변환된 옵저버블이 방출하는 항목만 포함됨.
+
+//func flatMapFirst<Source: ObservableConvertibleType>(_ selector: @escaping (Element) throws -> Source)
+//    -> Observable<Source.Element> {
+//        return FlatMapFirst(source: self.asObservable(), selector: selector)
+//}
 
 let disposeBag = DisposeBag()
 
@@ -46,3 +52,27 @@ a.onNext(11)
 b.onNext(22)
 b.onNext(222)
 a.onNext(111)
+//next(1)
+//next(2)
+//next(11)
+//next(22)
+//next(222)
+//next(111)
+
+subject
+   .flatMapFirst { $0.asObservable() }
+   .subscribe { print($0) }
+   .disposed(by: disposeBag)
+
+subject.onNext(a)
+subject.onNext(b)
+// a에 저장된 값만 방출됨
+//next(1)
+
+a.onNext(11)
+b.onNext(22)
+b.onNext(222)
+a.onNext(111)
+//next(1)
+//next(11)
+//next(111)

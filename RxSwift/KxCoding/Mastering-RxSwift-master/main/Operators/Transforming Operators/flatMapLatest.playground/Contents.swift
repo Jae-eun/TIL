@@ -26,6 +26,12 @@ import RxSwift
 /*:
  # flatMapLatest
  */
+// * flatMapLatest() : 모든 옵저버블이 방출하는 항목을 하나로 합치지 않음. 가장 최근에 변환된 옵저버블이 방출하는 요소만 구독자에게 전달함.
+
+//func flatMapLatest<Source: ObservableConvertibleType>(_ selector: @escaping (Element) throws -> Source)
+//        -> Observable<Source.Element> {
+//     return FlatMapLatest(source: self.asObservable(), selector: selector)
+//}
 
 let disposeBag = DisposeBag()
 
@@ -35,7 +41,47 @@ let b = BehaviorSubject(value: 2)
 let subject = PublishSubject<BehaviorSubject<Int>>()
 
 subject
-   .flatMap { $0.asObservable() }
+   .flatMapLatest { $0.asObservable() }
    .subscribe { print($0) }
    .disposed(by: disposeBag)
+
+subject.onNext(a)
+//next(1)
+
+a.onNext(11)
+//next(1)
+//next(11)
+
+subject.onNext(b)
+//next(1)
+//next(11)
+//next(2)
+
+b.onNext(22)
+//next(1)
+//next(11)
+//next(2)
+//next(22)
+
+a.onNext(11)
+//next(1)
+//next(11)
+//next(2)
+//next(22)
+
+subject.onNext(a)
+//next(1)
+//next(11)
+//next(2)
+//next(22)
+//next(11)
+
+b.onNext(222)
+a.onNext(111)
+//next(1)
+//next(11)
+//next(2)
+//next(22)
+//next(11)
+//next(111)
 

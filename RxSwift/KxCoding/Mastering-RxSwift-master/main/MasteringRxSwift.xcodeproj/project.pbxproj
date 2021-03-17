@@ -610,8 +610,8 @@
 				AA4EBBB622B8E04900A8488E /* flatMap.playground */,
 				AA4EBBB722B90DFC00A8488E /* flatMapFirst.playground */,
 				AA4EBBB822B90E0700A8488E /* flatMapLatest.playground */,
-				AA5F4F5C22B936A700A9D8C8 /* scan.playground */,
 				AAA99FD822B9E484007AAEEC /* buffer.playground */,
+				AA5F4F5C22B936A700A9D8C8 /* scan.playground */,
 				AAA99FD922B9F66A007AAEEC /* window.playground */,
 				AAE3C8B62357547100A34940 /* groupBy.playground */,
 			);

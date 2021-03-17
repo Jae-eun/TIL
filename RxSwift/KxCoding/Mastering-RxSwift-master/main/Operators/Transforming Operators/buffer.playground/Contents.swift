@@ -26,9 +26,49 @@ import RxSwift
 /*:
  # buffer
  */
+// * buffer() : 특정 주기동안 옵저버블이 방출하는 요소를 수집하여 하나의 배열로 리턴함
+// Controlled Buffering 구현에 사용됨
+
+//func buffer(timeSpan: RxTimeInterval,
+//            count: Int,
+//            scheduler: SchedulerType) -> Observable<[Element]> {
+//    return BufferTimeCount(source: self.asObservable(),
+//                           timeSpan: timeSpan,
+//                           count: count,
+//                           scheduler: scheduler)
+//}
+
+// 첫번째 파라미터 : 요소를 수집할 시간. 시간이 경과하지 않았더라도 요소를 방출할 수 있음
+// 두번째 파라미터 : 수집한 파라미터의 최대 수. 시간이 경과하면 수집된 항목만 방출함
 
 let disposeBag = DisposeBag()
 
+Observable<Int>.interval(.seconds(1),
+                         scheduler: MainScheduler.instance)
+    .buffer(timeSpan: .seconds(2),
+            count: 3,
+            scheduler: MainScheduler.instance)
+    .take(5) // take 조건을 주지 않으면 무한정 방출
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next([0])
+//next([1, 2, 3])
+//next([4, 5])
+//next([6, 7])
+//next([8, 9])
+//completed
 
-
-
+Observable<Int>.interval(.seconds(1),
+                         scheduler: MainScheduler.instance)
+    .buffer(timeSpan: .seconds(5),
+            count: 3,
+            scheduler: MainScheduler.instance)
+    .take(5) // take 조건을 주지 않으면 무한정 방출
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+//next([0, 1, 2])
+//next([3, 4, 5])
+//next([6, 7, 8])
+//next([9, 10, 11])
+//next([12, 13, 14])
+//completed
