@@ -20,7 +20,6 @@
 // 함수 원형
 func create(_ subscribe: @escaping (AnyObserver<Self.Element>) -> Disposable) -> Observable<Self.Element>
 // AnyObserver: 해당 Observable을 구독하게 될 Observer. Observer의 on 메소드를 통해 이벤트를 전달함.
-// 
 
 // 타입 추론이 불가능하기 때문에 명시적으로 타입을 제네릭으로 작성해야 함.
 let source: Observable<Int> = Observable.create { observer in
@@ -449,4 +448,3 @@ Observable.of([1, 2], [3, 4], [5, 6])
 //completed
 // * 요소를 그대로 방출함. 배열 -> 배열로
 ```
-
