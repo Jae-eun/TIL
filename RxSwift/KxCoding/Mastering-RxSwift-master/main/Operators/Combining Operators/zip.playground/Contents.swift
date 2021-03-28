@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # zip
  */
+// * zip() : Indexed Sequencing을 구현함.
 
 let bag = DisposeBag()
 

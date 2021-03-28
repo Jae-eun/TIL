@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # merge
  */
+// * merge() : 여러 옵저버블이 방출하는 이벤트를 하나의 옵저버블에서 방출하도록 병합함.
 
 let bag = DisposeBag()
 

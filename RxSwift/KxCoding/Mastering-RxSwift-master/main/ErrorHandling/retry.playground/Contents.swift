@@ -26,33 +26,80 @@ import RxSwift
 /*:
  # retry
  */
+// * retry() : 옵저버블에서 에러가 발생하면 구독을 취소하고 새로운 구독을 시작함. 옵저버블 시퀀스는 처음부터 다시 시작되는 것임.
+// 옵저버블이 계속 에러가 난다면 무한 시퀀스가 됨.
+
+// func retry() -> Observable<Self.Element>
+// func retry(_ maxAttemptCount: Int) -> Observable<Self.Element>
+// 최대 재시도 횟수를 파라미터로 넣음.
 
 let bag = DisposeBag()
 
 enum MyError: Error {
-   case error
+    case error
 }
 
 var attempts = 1
 
 let source = Observable<Int>.create { observer in
-   let currentAttempts = attempts
-   print("#\(currentAttempts) START")
-   
-   if attempts < 3 {
-      observer.onError(MyError.error)
-      attempts += 1
-   }
-   
-   observer.onNext(1)
-   observer.onNext(2)
-   observer.onCompleted()
-         
-   return Disposables.create {
-      print("#\(currentAttempts) END")
-   }
+    let currentAttempts = attempts
+    print("#\(currentAttempts) START")
+
+    if attempts < 3 {
+        observer.onError(MyError.error)
+        attempts += 1
+    }
+
+    observer.onNext(1)
+    observer.onNext(2)
+    observer.onCompleted()
+
+    return Disposables.create {
+        print("#\(currentAttempts) END")
+    }
 }
 
 source
-   .subscribe { print($0) }
-   .disposed(by: bag)
+    .subscribe { print($0) }
+    .disposed(by: bag)
+//#1 START
+//error(error)
+//#1 END
+
+source
+    .retry()
+    .subscribe { print($0) }
+    .disposed(by: bag)
+//#1 START
+//#1 END
+//#2 START
+//#2 END
+//#3 START
+//next(1)
+//next(2)
+//completed
+//#3 END
+
+source
+    .retry(1)
+    .subscribe { print($0) }
+    .disposed(by: bag)
+//#1 START
+//#1 END
+//error(error)
+// 마지막 결과도 실패면 구독자에게 에러 이벤트가 전달되고 구독이 종료됨.
+
+source
+    .retry(5)
+    .subscribe { print($0) }
+    .disposed(by: bag)
+//#1 START
+//#1 END
+//#2 START
+//#2 END
+//#3 START
+//next(1)
+//next(2)
+//completed
+//#3 END
+// 재시도 횟수 안에 성공하면 completed 이벤트가 전달되고 구독이 종료됨.

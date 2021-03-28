@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # switchLatest
  */
+// * switchLatest() : 가장 최근에 방출된 옵저버블을 구독하고, 이 옵저버블이 전달하는 이벤트를 구독자에게 전달함.
 
 let bag = DisposeBag()
 

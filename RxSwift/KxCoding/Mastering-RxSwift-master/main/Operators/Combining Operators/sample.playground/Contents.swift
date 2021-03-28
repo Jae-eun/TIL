@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # sample
  */
+// * sample() : 트리거 옵저버블이 Next 이벤트를 전달할 때마다 데이터 옵저버블이 Next 이벤트를 방출하지만, 동일한 Next 이벤트를 반복해서 방출하지 않음.
 
 let bag = DisposeBag()
 

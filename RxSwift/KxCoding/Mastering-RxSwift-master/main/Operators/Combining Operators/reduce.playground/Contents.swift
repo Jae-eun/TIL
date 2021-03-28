@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # reduce
  */
+// * reduce() : 시드 값과 옵저버블이 방출하는 요소를 대상으로 클로저를 실행하고 최종 결과를 옵저버블로 방출함. 
 
 let bag = DisposeBag()
 

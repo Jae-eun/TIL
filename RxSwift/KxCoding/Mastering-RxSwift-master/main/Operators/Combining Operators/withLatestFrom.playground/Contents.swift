@@ -26,7 +26,7 @@ import RxSwift
 /*:
  # withLatestFrom
  */
-
+// * withLatestFrom() : 트리거 옵저버블이 Next 이벤트를 방출하면 데이터 옵저버블이 가장 최근에 방출한 Next 이벤트를 구독자에게 전달함.
 let bag = DisposeBag()
 
 enum MyError: Error {

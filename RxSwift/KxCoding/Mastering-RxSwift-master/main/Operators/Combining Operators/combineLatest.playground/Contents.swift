@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # combineLatest
  */
+// * combineLatest() : 소스 옵저버블이 방출하는 최신 요소를 병합함.
 
 let bag = DisposeBag()
 

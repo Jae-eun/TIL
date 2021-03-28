@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # startWith
  */
+// * startWith() : 옵저버블 시퀀스 앞에 새로운 요소를 추가함.
 
 let bag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5]

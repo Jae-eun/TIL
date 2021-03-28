@@ -27,17 +27,24 @@ import RxSwift
  # catchErrorJustReturn
  */
 
+// * catchErrorJustReturn() : 에러가 발생하면 파라미터로 전달한 기본값을 구독자에게 전달함. 파라미터의 타입은 원본 옵저버블이 방출하는 타입과 같음.
+
+//public func catchErrorJustReturn(_ element: Self.Element) -> Observable<Self.Element>
+
 let bag = DisposeBag()
 
 enum MyError: Error {
-   case error
+    case error
 }
 
 let subject = PublishSubject<Int>()
 
 subject
-   .subscribe { print($0) }
-   .disposed(by: bag)
+    .catchErrorJustReturn(-1)
+    .subscribe { print($0) }
+    .disposed(by: bag)
 
 subject.onError(MyError.error)
-
+//next(-1)
+//completed
+// 더이상 다른 이벤트를 전달하지 못함. 

@@ -26,6 +26,7 @@ import RxSwift
 /*:
  # concat
  */
+// * concat() : 두 개의 옵저버블을 연결함.
 
 let bag = DisposeBag()
 let fruits = Observable.from(["🍏", "🍎", "🥝", "🍑", "🍋", "🍉"])

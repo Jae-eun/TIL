@@ -26,9 +26,56 @@ import RxSwift
 /*:
  # timeout
  */
+// * timeout() : 모든 요소에 타임아웃 정책을 적용함. 지정한 시간 동안 Next 이벤트를 방출하지 않으면 에러 이벤트가 방출되고 종료됨.
 
-let bag = DisposeBag()
+//func timeout(_ dueTime: RxTimeInterval,
+//              scheduler: SchedulerType) -> Observable<Self.Element>
+
+//func timeout<Source>(_ dueTime: RxTimeInterval,
+//                     other: Source,
+//                     scheduler: SchedulerType) -> Observable<Self.Element> where Source : ObservableConvertibleType, Self.Element == Source.Element
+// 타임아웃이 되면 에러 이벤트를 전달하는 것이 아니라 구독 대상을 두번째 파라미터로 전달한 옵저버블로 교체함.
+
+let disposeBag = DisposeBag()
 
 let subject = PublishSubject<Int>()
 
+//subject
+//    .timeout(.seconds(3),
+//             scheduler: MainScheduler.instance)
+//    .subscribe { print($0) }
+//    .disposed(by: disposeBag)
 
+//Observable<Int>.timer(.seconds(1),
+//                      period: .seconds(1),
+//                      scheduler: MainScheduler.instance)
+//    .subscribe(onNext: { subject.onNext($0) })
+//    .disposed(by: disposeBag)
+//next(0)
+//next(1)
+//next(2)
+//...
+
+//Observable<Int>.timer(.seconds(5),
+//                      period: .seconds(1),
+//                      scheduler: MainScheduler.instance)
+//    .subscribe(onNext: { subject.onNext($0) })
+//    .disposed(by: disposeBag)
+//error(Sequence timeout.)
+
+
+subject
+    .timeout(.seconds(3),
+             other: Observable.just(0),
+             scheduler: MainScheduler.instance)
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
+
+Observable<Int>.timer(.seconds(2),
+                      period: .seconds(5),
+                      scheduler: MainScheduler.instance)
+    .subscribe(onNext: { subject.onNext($0) })
+    .disposed(by: disposeBag)
+//next(0)
+//next(0)
+//completed
