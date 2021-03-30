@@ -50,21 +50,21 @@ import RxSwift
 let disposeBag = DisposeBag()
 
 let backgroundScheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global())
-
-Observable.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
-    .filter { num -> Bool in
-        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> filter")
-        return num.isMultiple(of: 2)
-    }
-    .map { num -> Int in
-        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> map")
-        return num * 2
-    }
-    .subscribe {
-        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> subscribe")
-        print($0)
-    }
-    .disposed(by: disposeBag)
+//
+//Observable.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
+//    .filter { num -> Bool in
+//        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> filter")
+//        return num.isMultiple(of: 2)
+//    }
+//    .map { num -> Int in
+//        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> map")
+//        return num * 2
+//    }
+//    .subscribe {
+//        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> subscribe")
+//        print($0)
+//    }
+//    .disposed(by: disposeBag)
 //Main Thread >> filter
 //Main Thread >> filter
 //Main Thread >> map
@@ -90,44 +90,6 @@ Observable.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
 //completed
 // CurrentThreadScheduler와 Main Thread에서 실행됨
 
-Observable.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
-    .filter { num -> Bool in
-        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> filter")
-        return num.isMultiple(of: 2)
-    }
-    .observeOn(backgroundScheduler)
-    .map { num -> Int in
-        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> map")
-        return num * 2
-    }
-    .subscribe {
-        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> subscribe")
-        print($0)
-    }
-    .disposed(by: disposeBag)
-//Main Thread >> filter
-//Main Thread >> filter
-//Background Thread >> map
-//Main Thread >> filter
-//Background Thread >> subscribe
-//Main Thread >> filter
-//next(4)
-//Main Thread >> filter
-//Background Thread >> map
-//Main Thread >> filter
-//Background Thread >> subscribe
-//Main Thread >> filter
-//next(8)
-//Main Thread >> filter
-//Background Thread >> map
-//Main Thread >> filter
-//Background Thread >> subscribe
-//next(12)
-//Background Thread >> map
-//Background Thread >> subscribe
-//next(16)
-//Background Thread >> subscribe
-//completed
 
 Observable.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
     .filter { num -> Bool in
@@ -139,7 +101,6 @@ Observable.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
         print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> map")
         return num * 2
     }
-    .subscribeOn(MainScheduler.instance)
     .subscribe {
         print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> subscribe")
         print($0)
@@ -147,27 +108,69 @@ Observable.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
     .disposed(by: disposeBag)
 //Main Thread >> filter
 //Main Thread >> filter
+//Main Thread >> filter
 //Background Thread >> map
+//Main Thread >> filter
+//Main Thread >> filter
+//Main Thread >> filter
 //Main Thread >> filter
 //Background Thread >> subscribe
 //Main Thread >> filter
 //next(4)
 //Main Thread >> filter
 //Background Thread >> map
-//Main Thread >> filter
 //Background Thread >> subscribe
 //next(8)
-//Main Thread >> filter
 //Background Thread >> map
-//Main Thread >> filter
 //Background Thread >> subscribe
 //next(12)
-//Main Thread >> filter
 //Background Thread >> map
 //Background Thread >> subscribe
 //next(16)
 //Background Thread >> subscribe
 //completed
+
+
+//Observable.of(1, 2, 3, 4, 5, 6, 7, 8, 9)
+//    .filter { num -> Bool in
+//        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> filter")
+//        return num.isMultiple(of: 2)
+//    }
+//    .observeOn(backgroundScheduler)
+//    .map { num -> Int in
+//        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> map")
+//        return num * 2
+//    }
+//    .subscribeOn(MainScheduler.instance)
+//    .subscribe {
+//        print(Thread.isMainThread ? "Main Thread" : "Background Thread", ">> subscribe")
+//        print($0)
+//    }
+//    .disposed(by: disposeBag)
+//Main Thread >> filter
+//Main Thread >> filter
+//Main Thread >> filter
+//Background Thread >> map
+//Main Thread >> filter
+//Main Thread >> filter
+//Main Thread >> filter
+//Background Thread >> subscribe
+//next(4)
+//Main Thread >> filter
+//Main Thread >> filter
+//Background Thread >> map
+//Background Thread >> subscribe
+//Main Thread >> filter
+//next(8)
+//Background Thread >> map
+//Background Thread >> subscribe
+//next(12)
+//Background Thread >> map
+//Background Thread >> subscribe
+//next(16)
+//Background Thread >> subscribe
+//completed
+
 // subscribeOn(_:)은 subscribeOn 메소드가 실행될 스케줄러나, 이어지는 연산자가 실행될 스케줄러를 지정하는 것이 아님.
 // * 옵저버블이 시작되는 시점에 어떤 스케줄러를 사용할지 지정한 것임.
 // * 호출 시점이 중요하지 않음.

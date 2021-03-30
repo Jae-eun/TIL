@@ -35,7 +35,7 @@ import RxSwift
 //    return Catch(source: self.asObservable(), handler: handler)
 //}
 
-let bag = DisposeBag()
+let disposeBag = DisposeBag()
 
 enum MyError: Error {
     case error
@@ -46,13 +46,12 @@ let recovery = PublishSubject<Int>()
 
 subject
     .subscribe { print($0) }
-    .disposed(by: bag)
+    .disposed(by: disposeBag)
 //error(error)
-
-subject
-    .catchError { _ in recovery } // 에러가 발생하면 새로운 옵저버블로 교체
-    .subscribe { print($0) }
-    .disposed(by: bag)
+//subject
+//    .catchError { _ in recovery } // 에러가 발생하면 새로운 옵저버블로 교체
+//    .subscribe { print($0) }
+//    .disposed(by: disposeBag)
 
 subject.onError(MyError.error)
 
@@ -63,4 +62,3 @@ recovery.onNext(22)
 recovery.onCompleted()
 //completed
 // 구독이 에러 없이 정상적으로 종료됨
-

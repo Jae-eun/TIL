@@ -33,7 +33,7 @@ import RxSwift
 // func retry(_ maxAttemptCount: Int) -> Observable<Self.Element>
 // 최대 재시도 횟수를 파라미터로 넣음.
 
-let bag = DisposeBag()
+let disposeBag = DisposeBag()
 
 enum MyError: Error {
     case error
@@ -61,7 +61,7 @@ let source = Observable<Int>.create { observer in
 
 source
     .subscribe { print($0) }
-    .disposed(by: bag)
+    .disposed(by: disposeBag)
 //#1 START
 //error(error)
 //#1 END
@@ -69,7 +69,7 @@ source
 source
     .retry()
     .subscribe { print($0) }
-    .disposed(by: bag)
+    .disposed(by: disposeBag)
 //#1 START
 //#1 END
 //#2 START
@@ -83,7 +83,7 @@ source
 source
     .retry(1)
     .subscribe { print($0) }
-    .disposed(by: bag)
+    .disposed(by: disposeBag)
 //#1 START
 //#1 END
 //error(error)
@@ -92,7 +92,7 @@ source
 source
     .retry(5)
     .subscribe { print($0) }
-    .disposed(by: bag)
+    .disposed(by: disposeBag)
 //#1 START
 //#1 END
 //#2 START
