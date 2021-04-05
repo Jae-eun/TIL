@@ -12,15 +12,17 @@ import RxCocoa
 
 class HelloRxCocoaViewController: UIViewController {
    
-   let bag = DisposeBag()
+   let disposeBag = DisposeBag()
    
    @IBOutlet weak var valueLabel: UILabel!
-   
    @IBOutlet weak var tapButton: UIButton!
    
    override func viewDidLoad() {
       super.viewDidLoad()
       
-      
+    tapButton.rx.tap
+        .map { "Hello, RxCocoa" } // 탭 이벤트를 문자열로 바꿈
+        .bind(to: valueLabel.rx.text) // 전달된 문자열이 label.text와 바인딩됨
+        .disposed(by: disposeBag)
    }
 }
