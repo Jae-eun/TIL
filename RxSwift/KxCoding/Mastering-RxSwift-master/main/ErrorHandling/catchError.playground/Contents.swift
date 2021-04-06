@@ -48,10 +48,10 @@ subject
     .subscribe { print($0) }
     .disposed(by: disposeBag)
 //error(error)
-//subject
-//    .catchError { _ in recovery } // 에러가 발생하면 새로운 옵저버블로 교체
-//    .subscribe { print($0) }
-//    .disposed(by: disposeBag)
+subject
+    .catchError { _ in recovery } // 에러가 발생하면 새로운 옵저버블로 교체
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
 
 subject.onError(MyError.error)
 

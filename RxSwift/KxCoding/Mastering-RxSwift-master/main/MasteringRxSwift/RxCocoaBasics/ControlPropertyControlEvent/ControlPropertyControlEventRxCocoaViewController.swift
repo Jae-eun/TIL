@@ -25,30 +25,66 @@ import RxSwift
 import RxCocoa
 
 class ControlPropertyControlEventRxCocoaViewController: UIViewController {
-   
-   let bag = DisposeBag()
-   
-   @IBOutlet weak var colorView: UIView!
-   
-   @IBOutlet weak var redSlider: UISlider!
-   @IBOutlet weak var greenSlider: UISlider!
-   @IBOutlet weak var blueSlider: UISlider!
-   
-   @IBOutlet weak var redComponentLabel: UILabel!
-   @IBOutlet weak var greenComponentLabel: UILabel!
-   @IBOutlet weak var blueComponentLabel: UILabel!
-   
-   @IBOutlet weak var resetButton: UIButton!
-   
-   private func updateComponentLabel() {
-      redComponentLabel.text = "\(Int(redSlider.value))"
-      greenComponentLabel.text = "\(Int(greenSlider.value))"
-      blueComponentLabel.text = "\(Int(blueSlider.value))"
-   }
-   
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      
-      
-   }
+
+    let disposeBag = DisposeBag()
+
+    @IBOutlet weak var colorView: UIView!
+
+    @IBOutlet weak var redSlider: UISlider!
+    @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
+
+    @IBOutlet weak var redComponentLabel: UILabel!
+    @IBOutlet weak var greenComponentLabel: UILabel!
+    @IBOutlet weak var blueComponentLabel: UILabel!
+
+    @IBOutlet weak var resetButton: UIButton!
+
+    private func updateComponentLabel() {
+        redComponentLabel.text = "\(Int(redSlider.value))"
+        greenComponentLabel.text = "\(Int(greenSlider.value))"
+        blueComponentLabel.text = "\(Int(blueSlider.value))"
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        redSlider.rx.value
+            .map { "\(Int($0))" }
+            .bind(to: redComponentLabel.rx.text) // 메인 스레드에서 실행됨. 따라서, 스레드 처리를 신경쓰기 않아도 됨.
+            .disposed(by: disposeBag)
+
+        greenSlider.rx.value
+            .map { "\(Int($0))" }
+            .bind(to: greenComponentLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        blueSlider.rx.value
+            .map { "\(Int($0))" }
+            .bind(to: blueComponentLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        // slider를 드래그 할 때마다 모든 slider의 value가 하나의 배열로 방출됨.
+        Observable.combineLatest([redSlider.rx.value,
+                                  greenSlider.rx.value,
+                                  blueSlider.rx.value])
+            .map { UIColor(red: CGFloat($0[0]) / 255,
+                           green: CGFloat($0[1]) / 255,
+                           blue: CGFloat($0[0]) / 255,
+                           alpha: 1.0) }
+            .bind(to: colorView.rx.backgroundColor)
+            .disposed(by: disposeBag)
+
+        resetButton.rx.tap // subscribe 전에 observeOn 메소드로 스케줄러를 변경하면 메인 스레드에서 실행되지 않을 수 있음.
+            .subscribe(onNext: { [weak self] in
+                self?.colorView.backgroundColor = .black
+
+                self?.redSlider.value = .zero
+                self?.greenSlider.value = .zero
+                self?.blueSlider.value = .zero
+
+                self?.updateComponentLabel()
+            })
+            .disposed(by: disposeBag)
+    }
 }

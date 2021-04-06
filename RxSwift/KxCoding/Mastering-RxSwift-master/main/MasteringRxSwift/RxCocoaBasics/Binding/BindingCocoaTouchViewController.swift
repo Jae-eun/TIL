@@ -25,7 +25,6 @@ import UIKit
 class BindingCocoaTouchViewController: UIViewController {
      
    @IBOutlet weak var valueLabel: UILabel!
-   
    @IBOutlet weak var valueField: UITextField!
    
    override func viewDidLoad() {
