@@ -37,7 +37,7 @@
 
 > * 작업을 실행할 `DispatchQueue`를 직접 지정하고 싶을 때 사용함. 
 > * `observeOn` 을 위한 특정 최적화를 가능하게 해줌.
-> * 메인 스케줄러는 `SerialDispatchQueueScheduler` 의 인스턴스 중 하나임.
+> * `MainScheduler`는 `SerialDispatchQueueScheduler` 의 인스턴스 중 하나임.
 
 
 
@@ -46,7 +46,6 @@
 ### ConcurrentDispatchQueueScheduler
 
 > * 작업을 실행할 `DispatchQueue`를 직접 지정하고 싶을 때 사용함.
-> * 시리얼 디스패치 큐에도 보낼 수 있으며 아무 문제도 일어나지 않을 것임.
 > * 어떤 작업이 **백그라운드에서 실행**되어야 할 때 사용하기 적합함.
 
 
@@ -75,7 +74,7 @@
 
 ## Scheduler 지정
 
-### observeOn 
+### observeOn(_:) 
 
 > * 이어지는 연산자들이 작업을 실행할 스케줄러를 지정함.
 
@@ -88,7 +87,7 @@
 > * `subscrbeOn` 메소드가 실행될 스케줄러나 이어지는 연산자가 실행될 스케줄러를 지정하는 것이 아님.
 > * **옵저버블이 시작되는 시점에 어떤 스케줄러를 사용할지 지정하는 것**임.
 > * **호출 시점이 중요하지 않음**.
-> * `subscribeOn` 메소드를 사용하지 않으면 `subscribe` 메소드가 호출된 스케줄러에서 새로운 시퀀스가 시작됨.
+> * **`subscribeOn` 메소드를 사용하지 않으면 `subscribe` 메소드가 호출된 스케줄러에서 새로운 시퀀스가 시작**됨.
 
 * `SubscrbieOn` 연산자는 다른 스케줄러를 지정해서 `Observable` 이 처리해야 할 연산자들을 실행시킴. 연산자 체인 중 아무 곳에서나 호출해도 됨. `Sequence` 생성과 `Dispose call` 을 특정 스케줄러에서 하고 싶을 때 사용. 
 

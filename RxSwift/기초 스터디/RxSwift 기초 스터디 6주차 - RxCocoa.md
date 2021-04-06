@@ -1,7 +1,7 @@
 # RxCocoa
 
 * 애플 환경의 애플리케이션을 제작하기 위한 도구들을 모아놓은 **Cocoa Framework**를 **Reative Library**와 합친 기능을 제공하는 라이브러리
-* UI Control 과 다른 SDK 클래스를 `wrapping` 한 커스텀 `extension set` 
+* UI Control 과 다른 SDK 클래스를 `wrapping` 한 커스텀 `Extension set` 
 
 
 
@@ -12,84 +12,163 @@
 
 
 
-## Binding 
-
-* 데이터를 UI로 표시
-* 
-
-
-
-## Binder 
-
-* UI 바인딩에 사용되는 특별한 옵저버
-* 데이터 소비자 역할을 수행함. 
-* 옵저버블이 아니기 때문에 구독자를 추가하는 것은 불가능함.
-* `ObserverType`을 준수함. 따라서 값을 생성하고 주입할 수는 있으나 값을 관찰할 수는 없음.
-* `Error` 이벤트를 방출할 수 없음.
-* `RxCocoa`에서 `binding`은 `Publisher`에서 `Subscriber`로 향하는 단방향 `binding`임. 
-* `bind(to: )` 메소드는 `subscribe()`의 별칭
-  * `bind(to: oberver)` 를 호출하게 되면 `subscribe(observer)` 가 실행됨. 
-* 메인 스레드에서 실행되는 것을 보장함.
-  * `bind(to: )` 메소드는 메인 스레드 실행을 보장함. 
-
 ## Traits 
 
 * UI 처리에 특화된 `Observable`  
 
-> * UI 바인딩에서 데이터 생산자 역할을 수행함.
-> * **메인 스케줄러, 메인 스레드에서 실행**됨. (스케줄러를 지정하지 않아도 됨.)
-> * `Error` 이벤트를 전달하지 않음. 
-> * 구독할 때, 새로운 시퀀스가 시작되는 것은 아님. 
-> * `Traits`를 구독하는 모든 구독자는 동일한 시퀀스를 공유함. (일반 `Observable` 에서 `share` 연산자를 사용하는 것과 동일한 방식으로 동작함.)
-
-
-
 > #### RxCocoa가 제공하는 Traits
 >
-> * `ControlProperty` : 컨트롤에 data를 바인딩하기 위해 사용함.
+> * `ControlProperty` : 컨트롤에 데이터를 바인딩하기 위해 사용함.
 > * `ControlEvent` : 컨트롤의 이벤트를 수신하기 위해 사용함.
-> * `Driver` : `error`를 방출하지 않고 메인 스레드에서 처리됨.
+> * `Driver` : `Error`를 방출하지 않고 메인 스레드에서 처리됨.
 > * `Signal` : `Driver` 와 거의 동일하나 자원을 공유하지 않음.
 
-> #### 특징 
->
-> * `Signal` 을 제외한 나머지 Traits들을 자원을 공유함. 
-
-
+* 특징
+  * UI 바인딩에서 데이터 생산자 역할을 수행함.
+  * **메인 스케줄러, 메인 스레드에서 실행**됨. (스케줄러를 지정하지 않아도 됨.)
+  * **`Error` 이벤트를 전달하지 않음.**
+  * 구독할 때, 새로운 시퀀스가 시작되는 것은 아님. 
+  * `Traits`를 구독하는 **모든 구독자는 동일한 시퀀스를 공유**함. (일반 `Observable` 에서 `share` 연산자를 사용하는 것과 동일한 방식으로 동작함.)
+  * `Signal` 을 제외한 나머지 Traits들은 자원을 공유함. 
 
 
 
 ## ControlProperty 
 
-> * RxCocoa는 Extension으로 View를 확장하고, 동일한 이름을 가진 속성을 추가함. 이 속성들은 대부분 `ControlProperty` 형식으로 선언되어 있음. 
+> * `RxCocoa`는 `Extension`으로 `View`를 확장하고, 동일한 이름을 가진 속성을 추가함. 이 속성들은 대부분 `ControlProperty` 형식으로 선언되어 있음. 
+>   * 기존 형식에 `rx`라는 속성을 추가하는 역할. `namespace`를 추가하는 것과 같음.
 > * 제네릭 구조체로 선언되어 있으며, `ControlPropertyType` 프로토콜을 준수함.
 >   *  `ControlPropertyType` 프로토콜은 `ObservableType` 과 `ObserverType` 프로토콜을 상속하고 있음. 
 > * `ControlProperty` 가 읽기 전용 속성을 확장했다면 `Observable` 역할만 수행하고, 읽기/쓰기가 모두 가능하다면 `Observer` 의 역할도 함께 수행함.
 
-* UI 바인딩에 사용되므로, 에러를 전달하거나 전달 받지 않음. 
-* `Completed` 이벤트는 컨트롤이 제거되지 직전에 전달됨.
-* 모든 이벤트는 메인 스케줄러에서 전달됨.
-* 
+* UI 바인딩에 사용되므로, **에러 이벤트를 전달하거나 전달 받지 않음. **
+* `Completed` 이벤트는 컨트롤이 제거되기 직전에 전달됨.
+* **모든 이벤트는 메인 스케줄러에서 전달**됨. `Observable` > `ControlProperty` > `Subscriber`
+* **시퀀스를 공유**함.
+  * 일반 `Observable`에서 `share(replay: 1)` 을 호출한 것과 동일하게 동작함. 
+  * **새로운 구독자가 추가되면 가장 최근에 저장된 속성값이 바로 저장**됨. 
 
-* `Subject`와 같이 프로퍼티에 새 값을 주입시킬 수 있고, 값의 변화도 관찰할 수 있는 타입으로 
+
+
+## ControlEvent 
+
+* `RxCocoa Extension`에는 `Event`를 `Observable` 로 래핑한 속성이 추가되어있음. 
+
+  ```swift
+  var event: ControlEvent<Type?> 
+  ```
+
+* `ControlEvent` 는 `ControlEventType` 프로토콜을 채택한 제네릭 구조체
+
+  * `ControlEventType` 프로토콜은 `ObservableType` 프로토콜을 채택하고 있음.
+  * `ControProperty` 와 달리 `Observer` 역할은 수행하지 못함. 
+
+* `ControlProperty` 와의 **공통점**
+
+  * `Completed` 이벤트는 컨트롤이 제거되기 직전에 전달됨.
+  * **모든 이벤트는 메인 스케줄러에서 전달**됨. 
+
+* `ControlProperty` 와의 **차이점**
+
+  * 가장 최근 이벤트를 전달하지 않음. **새로운 구독자는 구독한 이후의 이벤트부터 전달받음**. 
 
   
 
+## Binding 
+
+* 데이터를 UI에 표시
+
+> * **데이터 생산자 `Obsevable`** (데이터를 전달) > **데이터 소비자 `UI Component`** (전달 받은 데이터를 소비)
+
+
+
+## Binder 
+
+* **UI 바인딩**에 사용되는 특별한 옵저버
+
+* 데이터 소비자 역할을 수행함. 
+
+* `RxCocoa`에서 `binding`은 `Publisher`에서 `Subscriber`로 향하는 단방향 `binding`임. 
+
+* `Observer`이기 때문에 **새로운 값을 전달할 수 있음**. 
+
+  * `ObserverType`을 준수함. 값을 주입시킬 수는 있지만, 값을 관찰할 수는 없음. 
+
+* `Observable`이 아니기 때문에 구독자를 추가하는 것은 불가능함.
+
+* **`Error` 이벤트를 받지 않음.**
+
+  * 일반적으로 옵저버에서 옵저버블로 에러 이벤트가 전달되면 시퀀스가 종료됨. `Next` 이벤트가 전달되지 않으면 UI가 더 이상 업데이트 될 수 없기 때문에, 이러한 상황을 방지하기 위해 에러 이벤트를 받지 않음. 
+
+* **메인 스레드에서 실행되는 것을 보장함.**
+
+  * `bind(to: )` 메소드는 메인 스레드 실행을 보장함. 
+    * `bind(to: )` 메소드는 `subscribe()`의 별칭
+    * `bind(to: oberver)` 를 호출하게 되면 `subscribe(observer)` 가 실행됨. 
+
+  ```swift
+  public func bind(onNext: @escaping (Self.Element) -> Void) -> RxSwift.Disposable
+  ```
+
+  
+
+## RxRelay
+
+
+
+### PublishRelay
+
+
+
+### BehaviorRelay
 
 
 
 
 
+## Driver
+
+- 데이터를 UI에 바인딩하는 직관적이고 효율적인 방법을 제공함.
+- **에러 이벤트를 전달하지 않음. **
+  - 오류로 인해 UI 처리가 중단되는 상황은 발생하지 않음. 
+  - 에러 이벤트를 처리하지 못함. Debug 환경에서는 `fatalError` 발생 / Runtime 환경에서는 에러가 로그됨.
+- 강제로 변경하지 않는 한 **메인 스케줄러에서 작업** 됨.
+- `Driver`는 **side effect를 공유**함.
+  - 일반 `Observable` 에서 `share(replay: 1, scope: .whileConnected)` 연산자를 호출한 것과 동일하게 동작함. 
+  - 모든 구독자가 시퀀스를 공유하고 **새로운 구독이 시작되면 가장 최근에 전달된 이벤트가 즉시 전달**됨.
+  - 시퀀스를 공유하기 때문에 불필요한 리소스 낭비를 막아줌.
 
 ```swift
+// Driver는 직접 생성하는 것이 아니라, 일반 Observable을 Driver로 변환함.
+let result = inputField.rx.text.asDriver() 
+		.flatMapLatest {
+				validateText($0)
+								.asDriver(onErrorJustReturn: false)
+    }
 
+result
+		.map { $0 ? "Ok" : "Error" }
+		.drive(resultLabel.rx.text) // 에러 이벤트를 받지 않음 = 에러 이벤트는 바인딩하지 못함.
+		.disposed(by: bag)
 ```
 
-```swift
-
-```
 
 
+## Signal
+
+- : Driver와 유사하지만 자원을 공유하지않음 (Signal은 event모델링에 유용, Driver는 state모델링에 더 적합
+
+
+
+## Single
+
+
+
+## Maybe
+
+
+
+## Completable 
 
 
 
@@ -267,8 +346,6 @@ extension Reactive where Base: UILabel {
 //let label = UILabel() 
 //label.rx.text 로 접근
 ```
-
-
 
 
 
