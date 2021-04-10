@@ -40,13 +40,13 @@ class BindingRxCocoaViewController: UIViewController {
         // UI 관련 처리이므로 메인 스레드에서 동작해야 함
 
         // 1.
-        //    valueField.rx.text
-        //        .subscribe(onNext: { [weak self] str in
-        //            DispatchQueue.main.async {
-        //                self?.valueLabel.text = str
-        //            }
-        //        })
-        //        .disposed(by: disposeBag)
+            valueField.rx.text
+                .subscribe(onNext: { [weak self] str in
+                    DispatchQueue.main.async {
+                        self?.valueLabel.text = str
+                    }
+                })
+                .disposed(by: disposeBag)
 
         // 2.
         //        valueField.rx.text
