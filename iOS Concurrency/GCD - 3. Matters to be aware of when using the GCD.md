@@ -28,7 +28,7 @@ DispatchQueue.global().async {
 > 실제 앱에서는 UI 관련 작업들이 `DispatchQueue.main`에서 동작하지만 플레이그라운드에서는 `DispatchQueue.global()`에서 동작합니다. 
 
 ```swift
-var imageCach = [String: UIImage]() 
+var imageCache = [String: UIImage]() 
 class CustomImageView: UIImageView {
 	var lastImgUrlUsedToLoadImage: String? 
 	
