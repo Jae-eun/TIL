@@ -26,7 +26,7 @@
         <!--메모 목록-->
         <scene sceneID="RJw-Ru-JsI">
             <objects>
-                <viewController id="gb4-Zo-zOH" sceneMemberID="viewController">
+                <viewController id="gb4-Zo-zOH" customClass="MemoListViewController" customModule="RxMemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bvK-Xp-4bX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,7 +67,7 @@
         <!--메모 보기-->
         <scene sceneID="uUI-jz-7Tc">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="FbI-aX-GzI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemoDetailViewController" id="FbI-aX-GzI" customClass="MemoDetailViewController" customModule="RxMemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i8v-nv-Uv5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,7 +84,7 @@
         <!--새 메모-->
         <scene sceneID="2lS-PY-q53">
             <objects>
-                <viewController id="vEV-Ge-3LR" sceneMemberID="viewController">
+                <viewController id="vEV-Ge-3LR" customClass="MemoComposeViewController" customModule="RxMemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hJA-vs-0rr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PBf-rE-hL1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3107.2463768115945" y="138.61607142857142"/>
+            <point key="canvasLocation" x="3120" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xW7-vf-Dfc">
