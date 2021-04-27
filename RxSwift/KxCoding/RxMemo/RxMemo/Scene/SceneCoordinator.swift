@@ -72,4 +72,3 @@ class SceneCoordinator: SceneCoordinatorType {
         }
     }
 }
-}
