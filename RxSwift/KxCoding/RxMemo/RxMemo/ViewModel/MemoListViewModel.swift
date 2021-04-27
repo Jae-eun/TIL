@@ -6,7 +6,13 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
-class MemoListViewModel {
+// 뷰모델에는 의존성을 주입하는 생성자와 바인딩에 사용되는 속성과 메소드가 추가됨
+class MemoListViewModel: CommonViewModel {
+    var memoList: Observable<[Memo]> {
+        return storage.memoList()
+    }
     
 }
