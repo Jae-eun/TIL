@@ -53,9 +53,132 @@ class RxCocoaURLSessionViewController: UIViewController {
    }
    
      
-   func fetchBookList() {
+    func fetchBookList() {
 
-      
+        let response = Observable.just(booksUrlStr)
+            .map { URL(string: $0)! }
+            .map { URLRequest(url: $0) }
+            .flatMap { URLSession.shared.rx.data(request: $0) }
+            .map(BookList.parse(data:))
+            .asDriver(onErrorJustReturn: [])
 
+
+//        let response = Observable<[Book]>.create { observer in
+//
+//            guard let url = URL(string: booksUrlStr) else {
+//                observer.onError(ApiError.badUrl)
+//                return Disposables.create()
+//            }
+//
+//            let session = URLSession.shared
+//
+//            let task = session.dataTask(with: url) { [weak self] (data, response, error) in
+//
+//                if let error = error {
+//                    observer.onError(error)
+//                    return
+//                }
+//
+//                guard let httpResponse = response as? HTTPURLResponse else {
+//                    observer.onError(ApiError.invalidResponse)
+//                    return
+//                }
+//
+//                guard (200...299).contains(httpResponse.statusCode) else {
+//                    observer.onError(ApiError.failed(httpResponse.statusCode))
+//                    return
+//                }
+//
+//                guard let data = data else {
+//                    observer.onError(ApiError.invalidData)
+//                    return
+//                }
+//
+//                do {
+//                    let decoder = JSONDecoder()
+//                    let bookList = try decoder.decode(BookList.self, from: data)
+//
+//                    if bookList.code == 200 {
+//                        observer.onNext(bookList.list)
+//                    } else {
+//                        observer.onNext([])
+//                    }
+//                    observer.onCompleted()
+//                } catch {
+//                    observer.onError(error)
+//                }
+//            }
+//            task.resume()
+//
+//            return Disposables.create {
+//                task.cancel()
+//            }
+//        }
+//        .asDriver(onErrorJustReturn: [])
+//
+//        // Driver와 BehaviorSubject를 바인딩
+//        response
+//            .drive(list)
+//            .disposed(by: rx.disposeBag)
+//
+//        response
+//            .map { _ in false }
+//            .startWith(true)
+//            .drive(UIApplication.shared.rx.isNetworkActivityIndicatorVisible)
+//            .disposed(by: rx.disposeBag)
    }
 }
+
+//func fetchBookList() {
+//   DispatchQueue.main.async {
+//      UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//   }
+//
+//   guard let url = URL(string: booksUrlStr) else {
+//      fatalError("Invalid URL")
+//   }
+//
+//   let session = URLSession.shared
+//
+//   let task = session.dataTask(with: url) { [weak self] (data, response, error) in
+//      defer {
+//         DispatchQueue.main.async { [weak self] in
+//            self?.listTableView.reloadData()
+//            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//         }
+//      }
+//
+//      if let error = error {
+//         print(error)
+//         return
+//      }
+//
+//      guard let httpResponse = response as? HTTPURLResponse else {
+//         print("Invalid Response")
+//         return
+//      }
+//
+//      guard (200...299).contains(httpResponse.statusCode) else {
+//         print(httpResponse.statusCode)
+//         return
+//      }
+//
+//      guard let data = data else {
+//         fatalError("Invalid Data")
+//      }
+//
+//      do {
+//         let decoder = JSONDecoder()
+//         let bookList = try decoder.decode(BookList.self, from: data)
+//
+//         if bookList.code == 200 {
+//            self?.list = bookList.list
+//         } else {
+//            self?.list = [Book]()
+//         }
+//      } catch {
+//         print(error)
+//      }
+//   }
+//   task.resume()
+//}
