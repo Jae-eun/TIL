@@ -75,14 +75,6 @@ imageView.kf.setImage(with: url,
 
 * 이미지 캐싱
 
-```
-
-```
-
-
-
-
-
 
 
 ### 사용
@@ -135,26 +127,6 @@ KingfisherManager.shared.retrieveImage(with: thumbnailUrl,
                                        options: [.requestModifier(imageDownloadRequest)],
                                        completionHandler: { request in                                                                                                                                 })
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -8,6 +8,12 @@
 
 
 
+## Cache란?
+
+* 많은 시간이나 연산이 필요한 일에 대한 결과를 저장하는 임시 저장소. 
+* 다음 동일한 결과 사용 시에 빠른 처리를 돕기 위한 것. 
+* 대표적으로 이미지 캐싱과 웹페이지 접속 시 도메인으로 접속하는 경우에 많이 쓰임. 
+
 # 메모리 캐시 vs 디스크 캐시
 
 ### 하드웨어 측면
@@ -21,13 +27,15 @@
 
 ### iOS 측면
 
-* 디스크 캐시 : 기기 안에 저장됨. 기기를 종료해도 남아 있음. 경로에 따라 앱을 삭제할 때 사라지게 할 수도, 남아있게 할 수도 있음. `UserDefault` 를 이용하여 간단하게 저장하면 앱을 삭제할 때 함께 사라짐. 파일 경로에 이미지를 저장하면 앱이 삭제되어도 남아 있음. (보통 파일 경로에 이미지를 저장함.)
-* 메모리 캐시 : 기기를 종료하면 사라짐. `NSCache` 를 통해 구현 할 수 있음.
+* 디스크 캐시 : **기기 안에 저장됨. 기기를 종료해도 남아 있음.** 경로에 따라 앱을 삭제할 때 사라지게 할 수도, 남아있게 할 수도 있음. `UserDefault` 를 이용하여 간단하게 저장하면 앱을 삭제할 때 함께 사라짐. 파일 경로에 이미지를 저장하면 앱이 삭제되어도 남아 있음. (보통 파일 경로에 이미지를 저장함.) **저장 공간은 상대적으로 크지만, 파일 입출력으로 인해 메모리 캐싱 방식보다 처리 속도가 느림.**
+* **메모리 캐시** : **기기를 종료하면 사라짐**. `NSCache` 를 통해 구현 할 수 있음. **처리 속도가 빠르지만 저장 공간이 작음. **
+
+
 
 ### 이미지 가져오는 처리 순서 
 
 1. 메모리 캐시(`NSCache`)에 있는지 확인하고 원하는 이미지가 없다면
-2. 디스크 캐시(`UserDefault` 나 기기 디렉토리에 있는 파일 형태)에서 확인 후 있으면 메모리 캐시에 추가, 없으면 
+2. 디스크 캐시(`UserDefault` 나 `CoreData`, 기기 디렉토리에 있는 파일 형태)에서 확인 후 있으면 메모리 캐시에 추가, 없으면 
 3. 서버 통신을 통해 URL로 이미지를 가져온 후 캐시 처리
 
 
@@ -84,7 +92,7 @@ if fileManager.fileExists(atPath: filePath.path) {
 
 => 위처럼 이미지명으로 캐시를 했는데, 서버에서 이미지명이 동일한 채 이미지 파일이 변경되었다면 클라이언트에서는 알 수 없음. 
 
-* 해결 방법 : HTTP 통신에 `ETag` 라는 개념을 사용해서 해결할 수 있음. ETag HTTP 응답 헤더는 특정 버전의 리소스를 식별하는 식별자임. 서버에서 구현이 되어 있어야 하고, Etag 값을 UserDefaults에 저장하는 식으로 활용하면 됨. 
+* 해결 방법 : **캐시가 유효하지 않을 때 캐시를 명시적으로 삭제.** HTTP 통신에 `ETag` 라는 개념을 사용해서 해결할 수 있음. ETag HTTP 응답 헤더는 특정 버전의 리소스를 식별하는 식별자임. 서버에서 구현이 되어 있어야 하고, Etag 값을 UserDefaults에 저장하는 식으로 활용하면 됨. 
 
 ```swift
 // eTag header 추가한 request 생성
@@ -94,7 +102,8 @@ func createRequest(_ url: URL, eTag: String?) -> NetworkRequest {
   return request
 }
 
-func handleResult(_ result: Session.GetDataResult, completion: ((DownloadResult) -> Void)?) {
+func handleResult(_ result: Session.GetDataResult,
+                  completion: ((DownloadResult) -> Void)?) {
   switch result {
   case .success((let data, let response)): 
   	if response.statusCode == 304 {
@@ -113,10 +122,12 @@ func handleResult(_ result: Session.GetDataResult, completion: ((DownloadResult)
 }
 ```
 
+* TTL(`Time To Live`) : 캐시를 생성할 때 **만료기간을 정해두는 것**. 지정된 만료일이 지나면 캐시를 삭제. 
 
 
 
+#### 참고
 
+[https://nsios.tistory.com/58](https://nsios.tistory.com/58)
 
-
-1. 
+[https://velog.io/@cooo002/ios%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%BA%90%EC%8B%B1%EC%B2%98%EB%A6%AC-%EA%B0%9C%EB%85%90](https://velog.io/@cooo002/ios%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%BA%90%EC%8B%B1%EC%B2%98%EB%A6%AC-%EA%B0%9C%EB%85%90)
