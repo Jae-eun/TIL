@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CardViewController.swift
 //  Concentration
 //
 //  Created by 이재은 on 2021/06/25.
@@ -7,15 +7,18 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class CardViewController: UIViewController {
 
     // MARK: - IBOutlet
     @IBOutlet private weak var flipCountLabel: UILabel!
     @IBOutlet private var cardButtons: [UIButton]!
 
     // MARK: - Property
-    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
-    private var flipCount = 0 {
+    private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    var numberOfPairsOfCards: Int {
+        return (cardButtons.count + 1) / 2
+    }
+    private(set) var flipCount = 0 {
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
         }
@@ -53,7 +56,7 @@ final class ViewController: UIViewController {
     private func emoji(for card: Card) -> String {
         if emoji[card.identifier] == nil,
            emojiChoices.count > 0 {
-            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+            let randomIndex = emojiChoices.count.arc4random
             emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
         }
         return emoji[card.identifier] ?? "?"
