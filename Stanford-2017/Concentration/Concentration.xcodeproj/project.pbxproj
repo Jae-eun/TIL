@@ -15,6 +15,7 @@
 		004824722685E98600042829 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004824702685E98600042829 /* Main.storyboard */; };
 		004824742685E98900042829 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 004824732685E98900042829 /* Assets.xcassets */; };
 		004824772685E98900042829 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004824752685E98900042829 /* LaunchScreen.storyboard */; };
+		0096756826AF139500BF71D7 /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0096756726AF139500BF71D7 /* Collection+.swift */; };
 		009CCA6F26A426BA00192F04 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009CCA6E26A426BA00192F04 /* Int+.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		004824732685E98900042829 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		004824762685E98900042829 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		004824782685E98900042829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0096756726AF139500BF71D7 /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
 		009CCA6E26A426BA00192F04 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,13 +64,10 @@
 		004824692685E98600042829 /* Concentration */ = {
 			isa = PBXGroup;
 			children = (
+				0096756B26AF13B200BF71D7 /* View */,
+				0096756A26AF13AE00BF71D7 /* Model */,
+				0096756926AF13A100BF71D7 /* Extension */,
 				0048247E2685F16B00042829 /* Supporting Files */,
-				0048246E2685E98600042829 /* CardViewController.swift */,
-				009CCA6E26A426BA00192F04 /* Int+.swift */,
-				00233A4B26931ADB002F65EA /* Concentration.swift */,
-				00233A4D26931BE4002F65EA /* Card.swift */,
-				004824702685E98600042829 /* Main.storyboard */,
-				004824782685E98900042829 /* Info.plist */,
 			);
 			path = Concentration;
 			sourceTree = "<group>";
@@ -79,9 +78,37 @@
 				004824732685E98900042829 /* Assets.xcassets */,
 				004824752685E98900042829 /* LaunchScreen.storyboard */,
 				0048246A2685E98600042829 /* AppDelegate.swift */,
+				004824782685E98900042829 /* Info.plist */,
 				0048246C2685E98600042829 /* SceneDelegate.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0096756926AF13A100BF71D7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				009CCA6E26A426BA00192F04 /* Int+.swift */,
+				0096756726AF139500BF71D7 /* Collection+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		0096756A26AF13AE00BF71D7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				00233A4B26931ADB002F65EA /* Concentration.swift */,
+				00233A4D26931BE4002F65EA /* Card.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0096756B26AF13B200BF71D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0048246E2685E98600042829 /* CardViewController.swift */,
+				004824702685E98600042829 /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +186,7 @@
 				00233A4E26931BE4002F65EA /* Card.swift in Sources */,
 				0048246B2685E98600042829 /* AppDelegate.swift in Sources */,
 				0048246D2685E98600042829 /* SceneDelegate.swift in Sources */,
+				0096756826AF139500BF71D7 /* Collection+.swift in Sources */,
 				009CCA6F26A426BA00192F04 /* Int+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,7 +335,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Concentration/Info.plist;
+				INFOPLIST_FILE = "Concentration/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,7 +353,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Concentration/Info.plist;
+				INFOPLIST_FILE = "Concentration/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
